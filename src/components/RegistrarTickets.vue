@@ -1,37 +1,36 @@
 <template>
-    <div class="top-rectangle"></div>
-
-    <div class="container">
+  <div class="top-rectangle"></div>
+  <div class="container">
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
       <nav class="menu">
         <a href="#" class="menu-item active">
-          <i class="icon">📄</i>
+          <img :src="this.registerIcon" alt="Register Ticket Icon" class="icon">
           Register Ticket
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">📊</i>
+          <img :src="this.dashboardIcon" alt="Dashboard Icon" class="icon">
           Dashboard
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">✉️</i>
+          <img :src="this.deliveryIcon" alt="Delivery Ticket Icon" class="icon">
           Delivery Ticket
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">📑</i>
+          <img :src="this.assignmentIcon" alt="Assignment Ticket Icon" class="icon">
           Assignment Ticket
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">📈</i>
+          <img :src="this.reportsIcon" alt="Reports Icon" class="icon">
           Reports
         </a>
         <a href="#" class="menu-item" @click="gocancelar">
-          <i class="icon">🚫</i>
+          <img :src="this.cancelIcon" alt="Cancel Ticket Icon" class="icon">
           Cancel Ticket
         </a>
         <a href="#" class="menu-item logout" @click="logout">
-          <i class="icon">🚪</i>
+          <img :src="this.logoutIcon" alt="Logout Icon" class="icon">
           Logout
         </a>
       </nav>
@@ -47,7 +46,7 @@
           </div>
           <p>Tickets creados</p>
         </div>
-        
+
         <!-- Formulario de Registro -->
         <div class="form">
           <div class="form-group">
@@ -97,7 +96,9 @@
               <td>{{ ticket.sequentialTicket }}</td>
               <td>{{ ticket.barcode }}</td>
               <td>
-                <button class="edit-button">✏️</button>
+                <button class="edit-button">
+                  <img :src="editIcon" alt="Edit Icon" class="icon"/>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -106,78 +107,83 @@
     </main>
   </div>
 </template>
-  
-  <script>
-  export default {
-    name: 'RegistrarTickets',
-    data() {
-      return {
-        newTicket: {
-          denomination: '',
-          registerDate: '',
-          sequentialTicket: '',
-          barcode: ''
+
+
+<script>
+import registerIcon from '../assets/register-svgrepo-com.svg';
+import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
+import deliveryIcon from '../assets/mail-svgrepo-com.svg';
+import assignmentIcon from '../assets/document-report-svgrepo-com.svg';
+import reportsIcon from '../assets/file-search-alt-svgrepo-com.svg';
+import cancelIcon from '../assets/cancel-svgrepo-com.svg';
+import logoutIcon from '../assets/logout-svgrepo-com.svg';
+import editIcon from '../assets/edit-3-svgrepo-com.svg'; // Agrega el icono de edición aquí
+
+export default {
+  name: 'RegistrarTickets',
+  data() {
+    return {
+      registerIcon,
+      dashboardIcon,
+      deliveryIcon,
+      assignmentIcon,
+      reportsIcon,
+      cancelIcon,
+      logoutIcon,
+      editIcon, // Agrega el icono de edición aquí
+      newTicket: {
+        denomination: '',
+        registerDate: '',
+        sequentialTicket: '',
+        barcode: ''
+      },
+      tickets: [
+        {
+          registerDate: '2023-10-10',
+          denomination: '500',
+          sequentialTicket: '123456',
+          barcode: 'ABC123'
         },
-        tickets: [
-          {
-            registerDate: '2023-10-10',
-            denomination: '500',
-            sequentialTicket: '123456',
-            barcode: 'ABC123'
-          },
-
-          {
+        {
           registerDate: '2023-10-12',
           denomination: '1000',
           sequentialTicket: '654321',
           barcode: 'XYZ789'
-          },
-
-          {
-          registerDate: '2023-10-12',
-          denomination: '1000',
-          sequentialTicket: '654321',
-          barcode: 'XYZ789'
-          },
-
-          {
-          registerDate: '2023-10-12',
-          denomination: '1000',
-          sequentialTicket: '654321',
-          barcode: 'XYZ789'
-          },
-
-          
-          
-        ]
-      };
+        }
+      ]
+    };
+  },
+  methods: {
+    logout() {
+      this.$router.push({ name: 'SignUp' });
     },
-    methods: {
-      logout() {
-        this.$router.push({ name: 'SignUp' });
-      },
-      gocancelar() {
-        this.$router.push({ name: 'CancelarTickets' });
-      },
-      addTicket() {
+    gocancelar() {
+      this.$router.push({ name: 'CancelarTickets' });
+    },
+    addTicket() {
+      if (this.newTicket.denomination && this.newTicket.registerDate && this.newTicket.sequentialTicket && this.newTicket.barcode) {
         this.tickets.push({ ...this.newTicket });
         this.clearForm();
-      },
-      clearForm() {
-        this.newTicket = {
-          denomination: '',
-          registerDate: '',
-          sequentialTicket: '',
-          barcode: ''
-        };
-      },
-      finalizeTicket() {
-        alert("Ticket finalizado.");
-        // Añadir lógica para finalizar el ticket
+      } else {
+        alert("Por favor, completa todos los campos del formulario.");
       }
+    },
+    clearForm() {
+      this.newTicket = {
+        denomination: '',
+        registerDate: '',
+        sequentialTicket: '',
+        barcode: ''
+      };
+    },
+    finalizeTicket() {
+      alert("Ticket finalizado.");
+      // Añadir lógica para finalizar el ticket
     }
   }
-  </script>
+}
+</script>
+
   
 
 
@@ -322,4 +328,13 @@
 .edit-button:hover {
   color: #d32f2f;
 }
+
+.icon {
+  width: px;
+  height: 50px;
+  margin-right: 5px;
+  vertical-align: middle;
+  color: #d32f2f
+}
+
 </style>

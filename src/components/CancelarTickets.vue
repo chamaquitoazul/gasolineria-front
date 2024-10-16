@@ -1,67 +1,46 @@
 <template>
-      <div class="top-rectangle"></div>
-      
-      <div class="container">
+  <div class="top-rectangle"></div>
+  <div class="container">
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
       <nav class="menu">
         <a href="#" class="menu-item" @click="gotickets">
-          <i class="icon">📄</i>
+          <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
           Register Ticket
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">📊</i>
+          <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
           Dashboard
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">✉️</i>
+          <img :src="deliveryIcon" alt="Delivery Ticket Icon" class="icon">
           Delivery Ticket
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">📑</i>
+          <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
           Assignment Ticket
         </a>
         <a href="#" class="menu-item">
-          <i class="icon">📈</i>
+          <img :src="reportsIcon" alt="Reports Icon" class="icon">
           Reports
         </a>
         <a href="#" class="menu-item active">
-          <i class="icon">🚫</i>
+          <img :src="cancelIcon" alt="Cancel Ticket Icon" class="icon">
           Cancel Ticket
         </a>
         <a href="#" class="menu-item logout" @click="logout">
-          <i class="icon">🚪</i>
+          <img :src="logoutIcon" alt="Logout Icon" class="icon">
           Logout
         </a>
       </nav>
     </aside>
-    
-      <!-- Área de Contenido Principal -->
-      <main class="content">
+   
+    <!-- Área de Contenido Principal -->
+    <main class="content">
       <div class="content-box">
-        <div class="header">
-          <div class="input-group">
-            <label for="pedido">ID del pedido:</label>
-            <input type="text" id="pedido" placeholder="Ingrese ID">
-          </div>
-          <div class="input-group">
-            <label for="empleado">Empleado:</label>
-            <input type="text" id="empleado" placeholder="Ingrese nombre">
-          </div>
-          <div class="input-group">
-            <label for="filtro">Filtro:</label>
-            <select id="filtro">
-              <option>Empleado</option>
-              <option>Ficha</option>
-              <option>Vehículo ID</option>
-            </select>
-          </div>
-        </div>
-        <hr class="separator">
-        <!-- Área de contenido adicional -->
-   <!-- Tabla -->
-   <table class="ticket-table">
+        <!-- Tabla de Tickets -->
+        <table class="ticket-table">
           <thead>
             <tr>
               <th>DeliveryID</th>
@@ -95,7 +74,7 @@
               <td>{{ ticket.Status }}</td>
               <td>
                 <button class="cancel-button" @click="cancelTicket(ticket)">
-                  🗑️
+                  <img :src="trashIcon" alt="Trash Icon" class="icon">
                 </button>
               </td>
             </tr>
@@ -105,12 +84,31 @@
     </main>
   </div>
 </template>
+
+
   
 <script>
+import registerIcon from '../assets/register-svgrepo-com.svg';
+import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
+import deliveryIcon from '../assets/mail-svgrepo-com.svg';
+import assignmentIcon from '../assets/document-report-svgrepo-com.svg';
+import reportsIcon from '../assets/file-search-alt-svgrepo-com.svg';
+import cancelIcon from '../assets/cancel-svgrepo-com.svg';
+import logoutIcon from '../assets/logout-svgrepo-com.svg';
+import trashIcon from '../assets/trash-bin-trash-svgrepo-com.svg';
+
 export default {
   name: 'CancelarTickets',
   data() {
-    return {
+    return { 
+      registerIcon,
+      dashboardIcon,
+      deliveryIcon,
+      assignmentIcon,
+      reportsIcon,
+      cancelIcon,
+      logoutIcon,
+      trashIcon,
       tickets: [
         {
           DeliveryID: 'D123',
@@ -126,7 +124,6 @@ export default {
           VehiclePlate: 'ABC123',
           Status: 'Pending'
         },
-
         {
           DeliveryID: 'D124',
           EmployeeNumber: 'E002',
@@ -141,9 +138,6 @@ export default {
           VehiclePlate: 'DEF456',
           Status: 'Approved'
         }
-
-
-        // Añade más objetos aquí según sea necesario
       ]
     };
   },
@@ -151,18 +145,17 @@ export default {
     logout() {
       this.$router.push({ name: 'SignUp' });
     },
-
-    gotickets(){
-        this.$router.push({name: 'RegistrarTickets' });
+    gotickets() {
+      this.$router.push({ name: 'RegistrarTickets' });
     },
-
     cancelTicket(ticket) {
       alert(`Cancelando ticket para: ${ticket.FullName}`);
-      // Aquí puedes añadir la lógica para cancelar el ticket
+      // Lógica adicional para cancelar el ticket
     }
   }
 }
 </script>
+
 
   
   
@@ -316,5 +309,15 @@ export default {
 .ticket-table .cancel-button:hover {
   color: #d32f2f;
 }
+
+.icon {
+  width: 35px;
+  height: 50px;
+  margin-right: 5px;
+  vertical-align: middle;
+  color: #d32f2f
+}
+
+
   </style>
   
