@@ -193,7 +193,7 @@ export default {
   
 
 
- <style>
+ <style scoped>
 /* Contenedor Principal */
 .container {
   display: flex;

@@ -155,7 +155,7 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   /* Container */
   .container {
     display: flex;

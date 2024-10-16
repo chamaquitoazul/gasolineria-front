@@ -87,7 +87,7 @@
 
 
   
-<script>
+<script scoped>
 import registerIcon from '../assets/register-svgrepo-com.svg';
 import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
 import deliveryIcon from '../assets/mail-svgrepo-com.svg';
