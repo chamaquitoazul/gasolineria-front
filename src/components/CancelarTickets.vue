@@ -13,11 +13,11 @@
           <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
           Dashboard
         </a>
-        <a href="#" class="menu-item">
+        <a href="#" class="menu-item" @click="goDeliveryTickets">
           <img :src="deliveryIcon" alt="Delivery Ticket Icon" class="icon">
           Delivery Ticket
         </a>
-        <a href="#" class="menu-item">
+        <a href="#" class="menu-item" @click="goAssignmentTickets">
           <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
           Assignment Ticket
         </a>
@@ -147,6 +147,12 @@ export default {
     },
     gotickets() {
       this.$router.push({ name: 'RegistrarTickets' });
+    },
+    goDeliveryTickets() {
+      this.$router.push({ name: 'DeliveryTickets' });
+    },
+    goAssignmentTickets() {
+      this.$router.push({ name: 'AssignmentTickets' });
     },
     cancelTicket(ticket) {
       alert(`Cancelando ticket para: ${ticket.FullName}`);
