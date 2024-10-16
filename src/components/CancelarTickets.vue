@@ -5,31 +5,31 @@
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
       <nav class="menu">
-        <a href="#" class="menu-item" @click="gotickets">
+        <router-link to="/registrar-tickets" class="menu-item">
           <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
           Register Ticket
-        </a>
-        <a href="#" class="menu-item">
+        </router-link>
+        <router-link to="/" class="menu-item">
           <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
           Dashboard
-        </a>
-        <a href="#" class="menu-item" @click="goDeliveryTickets">
+        </router-link>
+        <router-link to="/delivery-tickets" class="menu-item">
           <img :src="deliveryIcon" alt="Delivery Ticket Icon" class="icon">
           Delivery Ticket
-        </a>
-        <a href="#" class="menu-item" @click="goAssignmentTickets">
+        </router-link>
+        <router-link to="/assignment-tickets" class="menu-item">
           <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
           Assignment Ticket
-        </a>
-        <a href="#" class="menu-item">
+        </router-link>
+        <router-link to="/reports" class="menu-item">
           <img :src="reportsIcon" alt="Reports Icon" class="icon">
           Reports
-        </a>
-        <a href="#" class="menu-item active">
+        </router-link>
+        <router-link to="/cancelar-tickets" class="menu-item active">
           <img :src="cancelIcon" alt="Cancel Ticket Icon" class="icon">
           Cancel Ticket
-        </a>
-        <a href="#" class="menu-item logout" @click="logout">
+        </router-link>
+        <a class="menu-item logout" @click="logout">
           <img :src="logoutIcon" alt="Logout Icon" class="icon">
           Logout
         </a>

@@ -17,7 +17,7 @@
             <img :src="deliveryIcon" alt="Delivery Ticket Icon" class="icon">
             Delivery Ticket  
           </router-link>
-          <router-link to="/" class="menu-item">
+          <router-link to="/assignment-tickets" class="menu-item">
             <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
             Assignment Ticket
           </router-link>
