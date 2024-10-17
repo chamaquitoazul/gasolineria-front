@@ -1,5 +1,6 @@
 <template>
   <div class="top-rectangle"></div>
+
   <div class="container">
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
@@ -9,7 +10,7 @@
           <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
           Register Ticket
         </router-link>
-        <router-link to="/" class="menu-item">
+        <router-link to="/Dashboard-view" class="menu-item">
           <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
           Dashboard
         </router-link>
@@ -108,6 +109,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 import registerIcon from '../assets/register-svgrepo-com.svg';
@@ -202,12 +204,17 @@ export default {
     }
 
   },
+  goPerfilUsuario() {
+    this.$router.push({ name: 'PerfilUsuario' });
+  },
+  goDashboard() {
+    this.$router.push({ name: 'Dashboard' });
+  },
   mounted() {
     this.loadTickets();
   }
 };
 </script>
-
 
 
 

@@ -5,15 +5,20 @@ import RegistrarUsuario from "./components/RegistrarUsuario.vue";
 import DeliveryTickets from "./components/DeliveryTickets.vue";
 import AssignmentTickets from "./components/AssignmentTickets.vue";
 import PerfilUsuario from "./components/PerfilUsuario.vue";
-import RecuperarContraseña from "./components/RecuperarContraseña.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import ReporteComponente from "./components/ReporteComponente.vue";
+import DashboardView from "./components/Dashboard.vue";
 
 const routes = [
   {
     name: "SignUp",
     component: SignUp,
     path: "/",
+  },
+  {
+    name: "DashboardView", 
+    component: DashboardView, 
+    path: "/Dashboard-view" ,
   },
   {
     name: "CancelarTickets",
@@ -35,7 +40,7 @@ const routes = [
     component: AssignmentTickets,
     path: "/assignment-tickets"  
   },
-   {
+  {
     name: "PerfilUsuario",
     component: PerfilUsuario,
     path: "/perfil-usuario",
@@ -45,11 +50,7 @@ const routes = [
     component: RegistrarUsuario,
     path: "/registrar-usuario",
   },
-    {
-    name: "RecuperarContraseña",
-    component: RecuperarContraseña, 
-    path: "/recuperar-contraseña",  
-  },
+    
   {
     name: "ReporteComponente",
     component: ReporteComponente,

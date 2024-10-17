@@ -44,7 +44,7 @@
   };
   </script>
   
-  <style>
+  <style >
   /* Contenedor principal que divide la pantalla en dos */
   .main-container {
     display: flex;
@@ -140,4 +140,5 @@
     z-index: 1;
   }
   </style>
+  
   
