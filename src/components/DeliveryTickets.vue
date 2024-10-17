@@ -21,7 +21,7 @@
             <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
             Assignment Ticket
           </router-link>
-          <router-link to="/" class="menu-item">
+          <router-link to="/reporte-componente" class="menu-item">
             <img :src="reportsIcon" alt="Reports Icon" class="icon">
             Reports
           </router-link>

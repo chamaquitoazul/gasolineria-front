@@ -23,7 +23,7 @@
           <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
           Assignment Ticket
         </router-link>
-        <router-link to="/reports" class="menu-item">
+        <router-link to="/reporte-componente" class="menu-item">
           <img :src="reportsIcon" alt="Reports Icon" class="icon">
           Reports
         </router-link>
@@ -113,7 +113,11 @@ export default {
       logoutIcon,
       trashIcon,
       tickets: [
-      
+        { FullName: 'Juan Perez', DeliveryID: 'D001', Date: '2023-10-20', Amount: '100.00', Status: 'Pending' },
+        { FullName: 'Ana Lopez', DeliveryID: 'D002', Date: '2023-10-21', Amount: '200.00', Status: 'Approved' },
+        { FullName: 'Carlos Ramirez', DeliveryID: 'D003', Date: '2023-10-22', Amount: '150.00', Status: 'Pending' },
+        { FullName: 'Maria Garcia', DeliveryID: 'D004', Date: '2023-10-23', Amount: '250.00', Status: 'Rejected' },
+        { FullName: 'Luis Martinez', DeliveryID: 'D005', Date: '2023-10-24', Amount: '300.00', Status: 'Approved' }
       ]
     };
   },
@@ -130,9 +134,17 @@ export default {
     goAssignmentTickets() {
       this.$router.push({ name: 'AssignmentTickets' });
     },
+
+    goReporte() {
+      this.$router.push({ name: 'ReporteComponente' });
+    },
+
+
+
     cancelTicket(ticket) {
-      alert(`Cancelando ticket para: ${ticket.FullName}`);
-      // Lógica adicional para cancelar el ticket
+      this.tickets = this.tickets.filter(t => t.DeliveryID !== ticket.DeliveryID);
+      
+      
     }
   }
 }

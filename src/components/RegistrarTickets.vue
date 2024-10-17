@@ -21,7 +21,7 @@
           <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
           Assignment Ticket
         </router-link>
-        <router-link to="/reports" class="menu-item">
+        <router-link to="/reporte-componente" class="menu-item">
           <img :src="reportsIcon" alt="Reports Icon" class="icon">
           Reports
         </router-link>
@@ -139,7 +139,14 @@ export default {
         sequentialTicket: '',
         barcode: ''
       },
-      tickets: []
+      tickets: [
+
+      { denomination: '200', registerDate: '2023-10-01', sequentialTicket: 'A123', barcode: 'BC1234' },
+        { denomination: '500', registerDate: '2023-10-02', sequentialTicket: 'B456', barcode: 'BC5678' },
+        { denomination: '1000', registerDate: '2023-10-03', sequentialTicket: 'C789', barcode: 'BC91011' },
+        { denomination: '2000', registerDate: '2023-10-04', sequentialTicket: 'D012', barcode: 'BC121314' },
+        { denomination: '500', registerDate: '2023-10-05', sequentialTicket: 'E345', barcode: 'BC151617' }
+      ]
     };
   },
   methods: {
@@ -188,7 +195,12 @@ export default {
     },
     goAssignmentTickets() {
       this.$router.push({ name: 'AssignmentTickets' });
+    },
+
+    goReporte() {
+      this.$router.push({ name: 'ReporteComponente' });
     }
+
   },
   mounted() {
     this.loadTickets();
@@ -196,14 +208,7 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Aquí van tus estilos CSS */
-</style>
 
-
-
-
-  
 
 
  <style scoped>

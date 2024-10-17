@@ -7,6 +7,7 @@ import AssignmentTickets from "./components/AssignmentTickets.vue";
 import PerfilUsuario from "./components/PerfilUsuario.vue";
 import RecuperarContraseña from "./components/RecuperarContraseña.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import ReporteComponente from "./components/ReporteComponente.vue";
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     name: "RecuperarContraseña",
     component: RecuperarContraseña, 
     path: "/recuperar-contraseña",  
+  },
+  {
+    name: "ReporteComponente",
+    component: ReporteComponente,
+    path: "/reporte-componente",
   },
 ];
 
