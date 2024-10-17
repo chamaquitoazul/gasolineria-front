@@ -1,5 +1,9 @@
 <template>
   <div class="top-rectangle"></div>
+   <div class="top-bar">
+  <a href="#" class="menu-item" @click="goPerfilUsuario">
+    <i class="icon">👤</i> Perfil
+  </a>
   <div class="container">
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
@@ -189,6 +193,9 @@ export default {
     goAssignmentTickets() {
       this.$router.push({ name: 'AssignmentTickets' });
     }
+  },
+  goPerfilUsuario() {
+    this.$router.push({ name: 'PerfilUsuario' });
   },
   mounted() {
     this.loadTickets();
