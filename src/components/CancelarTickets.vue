@@ -1,6 +1,8 @@
 <template>
   <div class="top-rectangle"></div>
+
   <div class="container">
+   
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
@@ -38,6 +40,7 @@
    
     <!-- Área de Contenido Principal -->
     <main class="content">
+      
       <div class="content-box">
         <!-- Tabla de Tickets -->
         <table class="ticket-table">
@@ -110,34 +113,7 @@ export default {
       logoutIcon,
       trashIcon,
       tickets: [
-        {
-          DeliveryID: 'D123',
-          EmployeeNumber: 'E001',
-          FullName: 'John Doe',
-          TravelDate: '2023-10-10',
-          Amount: '100.00',
-          TravelReason: 'Business',
-          VehiclesID: 'V456',
-          Ficha: 'F789',
-          Model: 'Toyota',
-          Chasis: 'CH12345',
-          VehiclePlate: 'ABC123',
-          Status: 'Pending'
-        },
-        {
-          DeliveryID: 'D124',
-          EmployeeNumber: 'E002',
-          FullName: 'Jane Smith',
-          TravelDate: '2023-10-12',
-          Amount: '150.00',
-          TravelReason: 'Training',
-          VehiclesID: 'V457',
-          Ficha: 'F790',
-          Model: 'Honda',
-          Chasis: 'CH67890',
-          VehiclePlate: 'DEF456',
-          Status: 'Approved'
-        }
+      
       ]
     };
   },

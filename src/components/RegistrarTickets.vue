@@ -108,8 +108,8 @@
   </div>
 </template>
 
-
 <script>
+import axios from 'axios';
 import registerIcon from '../assets/register-svgrepo-com.svg';
 import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
 import deliveryIcon from '../assets/mail-svgrepo-com.svg';
@@ -117,7 +117,9 @@ import assignmentIcon from '../assets/document-report-svgrepo-com.svg';
 import reportsIcon from '../assets/file-search-alt-svgrepo-com.svg';
 import cancelIcon from '../assets/cancel-svgrepo-com.svg';
 import logoutIcon from '../assets/logout-svgrepo-com.svg';
-import editIcon from '../assets/edit-3-svgrepo-com.svg'; // Agrega el icono de edición aquí
+import editIcon from '../assets/edit-3-svgrepo-com.svg';
+
+const API_BASE_URL = 'https://localhost:7295/api';
 
 export default {
   name: 'RegistrarTickets',
@@ -130,46 +132,36 @@ export default {
       reportsIcon,
       cancelIcon,
       logoutIcon,
-      editIcon, // Agrega el icono de edición aquí
+      editIcon,
       newTicket: {
         denomination: '',
         registerDate: '',
         sequentialTicket: '',
         barcode: ''
       },
-      tickets: [
-        {
-          registerDate: '2023-10-10',
-          denomination: '500',
-          sequentialTicket: '123456',
-          barcode: 'ABC123'
-        },
-        {
-          registerDate: '2023-10-12',
-          denomination: '1000',
-          sequentialTicket: '654321',
-          barcode: 'XYZ789'
-        }
-      ]
+      tickets: []
     };
   },
   methods: {
-    logout() {
-      this.$router.push({ name: 'SignUp' });
-    },
-    gocancelar() {
-      this.$router.push({ name: 'CancelarTickets' });
-    },
-    goDeliveryTickets() {
-      this.$router.push({ name: 'DeliveryTickets' });
-    },
-    goAssignmentTickets() {
-      this.$router.push({ name: 'AssignmentTickets' });
+    loadTickets() {
+      axios.get(`${API_BASE_URL}/tickets`)
+        .then(response => {
+          this.tickets = response.data;
+        })
+        .catch(error => {
+          console.error('Error al cargar los tickets:', error);
+        });
     },
     addTicket() {
       if (this.newTicket.denomination && this.newTicket.registerDate && this.newTicket.sequentialTicket && this.newTicket.barcode) {
-        this.tickets.push({ ...this.newTicket });
-        this.clearForm();
+        axios.post(`${API_BASE_URL}/tickets`, this.newTicket)
+          .then(response => {
+            this.tickets.push(response.data); // Agrega el nuevo ticket a la lista actual
+            this.clearForm();
+          })
+          .catch(error => {
+            console.error('Error al crear el ticket:', error);
+          });
       } else {
         alert("Por favor, completa todos los campos del formulario.");
       }
@@ -184,11 +176,32 @@ export default {
     },
     finalizeTicket() {
       alert("Ticket finalizado.");
-      // Añadir lógica para finalizar el ticket
+    },
+    logout() {
+      this.$router.push({ name: 'SignUp' });
+    },
+    gocancelar() {
+      this.$router.push({ name: 'CancelarTickets' });
+    },
+    goDeliveryTickets() {
+      this.$router.push({ name: 'DeliveryTickets' });
+    },
+    goAssignmentTickets() {
+      this.$router.push({ name: 'AssignmentTickets' });
     }
+  },
+  mounted() {
+    this.loadTickets();
   }
-}
+};
 </script>
+
+<style scoped>
+/* Aquí van tus estilos CSS */
+</style>
+
+
+
 
   
 

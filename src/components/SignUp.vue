@@ -4,6 +4,7 @@
   
     <!-- Contenedor principal -->
     <div class="main-container">
+      
       <!-- Contenedor del formulario de inicio de sesión -->
       <div class="login-container">
         <img class="logo" src="../assets/logo.png" alt="Logo">
@@ -114,7 +115,7 @@
   /* Rectángulo superior */
   .top-rectangle {
     width: 100%;
-    height: 50px;
+    height: 53px;
     background: linear-gradient(to bottom, #FF5100, #992C2C, #14033C); /* Gradiente de arriba hacia abajo */
     position: fixed;
     top: 0;
