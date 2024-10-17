@@ -50,44 +50,52 @@
 
         <div class="content-box">
           <!-- Cuatro rectángulos de colores con contenido dentro -->
-          <div class="ticket red-ticket">
-            <div class="white-box">
-              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
-              <label class="ticket-label">TICKET 200</label>
-              <img :src="barIcon" alt="Bar" class="bar-img">
+          <div>
+            <div class="ticket red-ticket">
+              <div class="white-box">
+                <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
+                <label class="ticket-label">TICKET 200</label>
+                <img :src="barIcon" alt="Bar" class="bar-img">
+              </div>
             </div>
             <div class="ticket-info">
               <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
             </div>
           </div>
 
-          <div class="ticket blue-ticket">
-            <div class="white-box">
-              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
-              <label class="ticket-label">TICKET 500</label>
-              <img :src="barIcon" alt="Bar" class="bar-img">
+          <div>
+            <div class="ticket blue-ticket">
+              <div class="white-box">
+                <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
+                <label class="ticket-label">TICKET 500</label>
+                <img :src="barIcon" alt="Bar" class="bar-img">
+              </div>
             </div>
             <div class="ticket-info">
               <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
             </div>
           </div>
 
-          <div class="ticket green-ticket">
-            <div class="white-box">
-              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
-              <label class="ticket-label">TICKET 1000</label>
-              <img :src="barIcon" alt="Bar" class="bar-img">
+          <div>
+            <div class="ticket green-ticket">
+              <div class="white-box">
+                <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
+                <label class="ticket-label">TICKET 1000</label>
+                <img :src="barIcon" alt="Bar" class="bar-img">
+              </div>
             </div>
             <div class="ticket-info">
               <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
             </div>
           </div>
 
-          <div class="ticket yellow-ticket">
-            <div class="white-box">
-              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
-              <label class="ticket-label">TICKET 2000</label>
-              <img :src="barIcon" alt="Bar" class="bar-img">
+          <div>
+            <div class="ticket yellow-ticket">
+              <div class="white-box">
+                <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
+                <label class="ticket-label">TICKET 2000</label>
+                <img :src="barIcon" alt="Bar" class="bar-img">
+              </div>
             </div>
             <div class="ticket-info">
               <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
@@ -135,31 +143,12 @@ export default {
     },
     handleUserClick() {
       alert("Usuario button clicked!");
-    },
-    goCancelar() {
-      this.$router.push({ name: 'CancelarTickets' });
-    },
-    goDeliveryTickets() {
-      this.$router.push({ name: 'DeliveryTickets' });
-    },
-    goAssignmentTickets() {
-      this.$router.push({ name: 'AssignmentTickets' });
-    },
-    goReporte() {
-      this.$router.push({ name: 'ReporteComponente' });
-    },
-    goPerfilUsuario() {
-      this.$router.push({ name: 'PerfilUsuario' });
-    },
-    goDashboard() {
-      this.$router.push({ name: 'Dashboard' });
     }
   }
 }
 </script>
 
 <style scoped>
-/* Asegura que html y body ocupen toda la pantalla sin márgenes ni padding */
 html, body {
   height: 100%;
   margin: 0;
@@ -167,7 +156,6 @@ html, body {
   overflow: hidden;
 }
 
-/* Contenedor principal */
 .container {
   display: flex;
   height: 100vh;
@@ -175,7 +163,6 @@ html, body {
   background: linear-gradient(to bottom, #FFEAE0, #F16564);
 }
 
-/* Sidebar de navegación */
 .sidebar {
   width: 250px;
   background-color: #ffffff;
@@ -192,7 +179,6 @@ html, body {
   margin-bottom: 20px;
 }
 
-/* Menú de navegación */
 .menu {
   width: 100%;
 }
@@ -223,7 +209,6 @@ html, body {
   color: #000000;
 }
 
-/* Header de Dashboard y Usuario */
 .header {
   display: flex;
   justify-content: space-between;
@@ -267,7 +252,6 @@ html, body {
   text-decoration: underline;
 }
 
-/* Área de contenido principal */
 .content {
   flex: 1;
   display: flex;
@@ -346,13 +330,19 @@ html, body {
 }
 
 .ticket-info {
-  margin-top: 10px;
   text-align: center;
+  margin-top: 10px;
 }
 
 .small-label {
-  display: block;
   font-size: 14px;
   color: #000000;
+}
+
+/* Sección de ticket-info fuera del ticket */
+.content-box > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
