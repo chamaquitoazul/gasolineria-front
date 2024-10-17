@@ -15,10 +15,6 @@
             Gestión de Usuarios
           </a>
           <a href="#" class="menu-item">
-            <i class="icon">🔒</i>
-            Cambiar Contraseña
-          </a>
-          <a href="#" class="menu-item">
             <i class="icon">🚪</i>
             Logout
           </a>
@@ -30,7 +26,7 @@
         <div class="content-box">
           <header class="content-header">
             <h1>Gestión de Usuarios</h1>
-            <button class="add-user-btn">+ Registrar cuenta</button>
+            <button class="add-user-btn" @click="goRegistrarUsuario">+ Registrar cuenta</button>
           </header>
   
           <!-- Tabla de Usuarios -->
@@ -80,8 +76,8 @@ export default {
     };
   },
   methods: {
-    gocambiarContrasena() {
-      this.$router.push({ name: 'CambiarContrasena' });
+    goRegistrarUsuario() {
+      this.$router.push({ name: 'RegistrarUsuario' });
     },
     editUser(id) {
       console.log("Editar usuario", id);
@@ -209,4 +205,3 @@ export default {
     color: #f44336;
   }
   </style>
-  
