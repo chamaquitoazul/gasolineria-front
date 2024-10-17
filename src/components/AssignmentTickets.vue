@@ -207,8 +207,8 @@
   }
   
   .logo {
-    width: 150px;
-    margin-bottom: 20px;
+  width: 250px;
+  margin-bottom: 20px;
   }
   
   /* Content */

@@ -119,9 +119,15 @@
   
         <!-- Botones -->
         <div class="form-buttons">
-          <button @click="saveTicket" class="save-button">Save</button>
-          <button @click="clearForm" class="cancel-button">Cancel</button>
-          <button @click="printTicket" class="print-button">Print</button>
+          <button @click="saveTicket" class="save-button">
+            <img :src="saveIcon" alt="Save Icon" class="button-icon" /> Save
+          </button>
+          <button @click="clearForm" class="cancel-button">
+            <img :src="CancelIcon" alt="Cancel Icon" class="button-icon" /> Cancel
+          </button>
+          <button @click="printTicket" class="print-button">
+            <img :src="printIcon" alt="Print Icon" class="button-icon" /> Print
+          </button>
         </div>
   
         <!-- Detalle de Ticket -->
@@ -143,7 +149,9 @@ import reportsIcon from '../assets/file-search-alt-svgrepo-com.svg';
 import cancelIcon from '../assets/cancel-svgrepo-com.svg';
 import logoutIcon from '../assets/logout-svgrepo-com.svg';
 import editIcon from '../assets/edit-3-svgrepo-com.svg';
-
+import saveIcon from '../assets/save-icon.svg';
+import CancelIcon from '../assets/cancel-svgrepo-com.svg';
+import printIcon from '../assets/print-icon.svg';
 
 export default {
   name: 'DeliveryTickets',
@@ -157,6 +165,9 @@ export default {
       cancelIcon,
       logoutIcon,
       editIcon,
+      CancelIcon,
+      saveIcon,
+      printIcon,
       deliveryTicket: {
         deliveryId: '',
         driver: '',
@@ -234,7 +245,7 @@ export default {
 }
 
 .logo {
-  width: 150px;
+  width: 250px;
   margin-bottom: 20px;
 }
 
@@ -257,6 +268,13 @@ export default {
   gap: 15px;
 }
 
+.button-icon {
+  width: 20px; /* Ajusta el tamaño según prefieras */
+  height: 20px;
+  margin-right: 10px; /* Agrega espacio entre el ícono y el texto */
+  vertical-align: middle; /* Alinea el ícono con el texto */
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -273,12 +291,14 @@ export default {
 }
 
 .save-button, .cancel-button, .print-button {
-  padding: 10px;
+  padding: 15px 30px; /* Aumenta el padding para que el botón sea más grande */
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
   color: white;
-  background-color: #d32f2f;
+  background-color: #d87e51;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 49%,50%;
 }
 
 .denomination-availability {
