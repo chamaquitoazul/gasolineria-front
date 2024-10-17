@@ -1,9 +1,6 @@
 <template>
   <div class="top-rectangle"></div>
-   <div class="top-bar">
-  <a href="#" class="menu-item" @click="goPerfilUsuario">
-    <i class="icon">👤</i> Perfil
-  </a>
+
   <div class="container">
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
@@ -112,6 +109,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 import registerIcon from '../assets/register-svgrepo-com.svg';
@@ -203,14 +201,6 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Aquí van tus estilos CSS */
-</style>
-
-
-
-
-  
 
 
  <style scoped>

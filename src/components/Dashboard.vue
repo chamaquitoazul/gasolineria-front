@@ -1,38 +1,37 @@
 <template>
   <div>
     <div class="top-rectangle"></div>
-
     <div class="container">
       <!-- Menú de Navegación Vertical -->
       <aside class="sidebar">
-        <img class="logo" src="@/assets/fueltag-removebg-preview 2.png" alt="Logo">
+        <img class="logo" :src="fueltagIcon" alt="Logo">
         <nav class="menu">
-          <a href="#" class="menu-item">
-            <i class="icon">📄</i>
+          <router-link to="/registrar-tickets" class="menu-item">
+            <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
             Register Ticket
-          </a>
-          <a href="#" class="menu-item active">
-            <i class="icon">📊</i>git
+          </router-link>
+          <router-link to="/dashboard" class="menu-item active">
+            <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
             Dashboard
-          </a>
-          <a href="#" class="menu-item">
-            <i class="icon">✉️</i>
+          </router-link>
+          <router-link to="/delivery-tickets" class="menu-item">
+            <img :src="deliveryIcon" alt="Delivery Ticket Icon" class="icon">
             Delivery Ticket
-          </a>
-          <a href="#" class="menu-item">
-            <i class="icon">📑</i>
+          </router-link>
+          <router-link to="/assignment-tickets" class="menu-item">
+            <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
             Assignment Ticket
-          </a>
-          <a href="#" class="menu-item">
-            <i class="icon">📈</i>
+          </router-link>
+          <router-link to="/reports" class="menu-item">
+            <img :src="reportsIcon" alt="Reports Icon" class="icon">
             Reports
-          </a>
-          <a href="#" class="menu-item">
-            <i class="icon">🚫</i>
+          </router-link>
+          <router-link to="/cancelar-tickets" class="menu-item">
+            <img :src="cancelIcon" alt="Cancel Ticket Icon" class="icon">
             Cancel Ticket
-          </a>
-          <a href="#" class="menu-item logout" @click="logout">
-            <i class="icon">🚪</i>
+          </router-link>
+          <a class="menu-item logout" @click="logout">
+            <img :src="logoutIcon" alt="Logout Icon" class="icon">
             Logout
           </a>
         </nav>
@@ -44,7 +43,7 @@
         <div class="header">
           <h1>Dashboard</h1>
           <div class="user-info">
-            <img src="@/assets/User.png" alt="User" class="user-img">
+            <img :src="userIcon" alt="User" class="user-img">
             <button class="user-button" @click="handleUserClick">Usuario</button>
           </div>
         </div>
@@ -53,49 +52,45 @@
           <!-- Cuatro rectángulos de colores con contenido dentro -->
           <div class="ticket red-ticket">
             <div class="white-box">
-              <img class="ticket-img" src="@/assets/fueltag-removebg-preview 2.png" alt="Ticket">
+              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
               <label class="ticket-label">TICKET 200</label>
-              <img class="bar-img" src="@/assets/bar.png" alt="Bar">
+              <img :src="barIcon" alt="Bar" class="bar-img">
             </div>
-            <!-- Labels debajo del rectángulo -->
             <div class="ticket-info">
-              <label class="small-label">Disponibilidad: XX    Status: XXXXXXXXXX</label>
+              <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
             </div>
           </div>
 
           <div class="ticket blue-ticket">
             <div class="white-box">
-              <img class="ticket-img" src="@/assets/fueltag-removebg-preview 2.png" alt="Ticket">
+              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
               <label class="ticket-label">TICKET 500</label>
-              <img class="bar-img" src="@/assets/bar.png" alt="Bar">
+              <img :src="barIcon" alt="Bar" class="bar-img">
             </div>
-            <!-- Labels debajo del rectángulo -->
             <div class="ticket-info">
-              <label class="small-label">Disponibilidad: XX    Status: XXXXXXXXXX</label>
+              <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
             </div>
           </div>
 
           <div class="ticket green-ticket">
             <div class="white-box">
-              <img class="ticket-img" src="@/assets/fueltag-removebg-preview 2.png" alt="Ticket">
+              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
               <label class="ticket-label">TICKET 1000</label>
-              <img class="bar-img" src="@/assets/bar.png" alt="Bar">
+              <img :src="barIcon" alt="Bar" class="bar-img">
             </div>
-            <!-- Labels debajo del rectángulo -->
             <div class="ticket-info">
-              <label class="small-label">Disponibilidad: XX    Status: XXXXXXXXXX</label>
+              <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
             </div>
           </div>
 
           <div class="ticket yellow-ticket">
             <div class="white-box">
-              <img class="ticket-img" src="@/assets/fueltag-removebg-preview 2.png" alt="Ticket">
+              <img :src="fueltagIcon" alt="Ticket" class="ticket-img">
               <label class="ticket-label">TICKET 2000</label>
-              <img class="bar-img" src="@/assets/bar.png" alt="Bar">
+              <img :src="barIcon" alt="Bar" class="bar-img">
             </div>
-            <!-- Labels debajo del rectángulo -->
             <div class="ticket-info">
-              <label class="small-label">Disponibilidad: XX    Status: XXXXXXXXXX</label>
+              <label class="small-label">Disponibilidad: XX Status: XXXXXXXXXX</label>
             </div>
           </div>
         </div>
@@ -105,8 +100,35 @@
 </template>
 
 <script>
+import registerIcon from '@/assets/register-svgrepo-com.svg';
+import dashboardIcon from '@/assets/dashboard-svgrepo-com.svg';
+import deliveryIcon from '@/assets/mail-svgrepo-com.svg';
+import assignmentIcon from '@/assets/document-report-svgrepo-com.svg';
+import reportsIcon from '@/assets/file-search-alt-svgrepo-com.svg';
+import cancelIcon from '@/assets/cancel-svgrepo-com.svg';
+import logoutIcon from '@/assets/logout-svgrepo-com.svg';
+import editIcon from '@/assets/edit-3-svgrepo-com.svg';
+import fueltagIcon from '@/assets/fueltag-removebg-preview 2.png';
+import barIcon from '@/assets/bar.png';
+import userIcon from '@/assets/User.png';
+
 export default {
-  name: 'CancelarTickets',
+  name: 'DashboardView',
+  data() {
+    return {
+      registerIcon,
+      dashboardIcon,
+      deliveryIcon,
+      assignmentIcon,
+      reportsIcon,
+      cancelIcon,
+      logoutIcon,
+      editIcon,
+      fueltagIcon,
+      barIcon,
+      userIcon,
+    };
+  },
   methods: {
     logout() {
       this.$router.push({ name: 'SignUp' });
@@ -118,7 +140,9 @@ export default {
 }
 </script>
 
-<style>
+
+
+<style  scoped>
 /* Asegura que html y body ocupen toda la pantalla sin márgenes ni padding */
 html, body {
   height: 100%;
