@@ -9,7 +9,7 @@
             <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
             Register Ticket
           </router-link>
-          <router-link to="/" class="menu-item">
+          <router-link to="/dashboard" class="menu-item">
             <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
             Dashboard
           </router-link>
@@ -144,6 +144,7 @@
   import logoutIcon from '../assets/logout-svgrepo-com.svg';
   import editIcon from '../assets/edit-3-svgrepo-com.svg';
   
+  
   export default {
     name: 'DeliveryTickets',
     data() {
@@ -169,7 +170,7 @@
           amount: '',
           details: ''
         },
-        drivers: [], // Aquí agregarías los datos reales de los conductores
+        drivers: [], // Lista de los datos reales de los conductores
         vehicles: [], // Lista de vehículos
         departments: [], // Lista de departamentos
         provinces: [], // Lista de provincias
