@@ -8,11 +8,11 @@
             <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
             Register Ticket
           </router-link>
-          <router-link to="/" class="menu-item">
+          <router-link to="/Dashboard-view" class="menu-item">
             <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
             Dashboard
           </router-link>
-          <router-link to="/delivery-tickets"  class="menu-item active">
+          <router-link to="/delivery-tickets"  class="menu-item ">
             <img :src="deliveryIcon" alt="Delivery Ticket Icon" class="icon">
             Delivery Ticket  
           </router-link>
@@ -20,7 +20,7 @@
             <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
             Assignment Ticket
           </router-link>
-          <router-link to="/reporte-componente" class="menu-item">
+          <router-link to="/reporte-componente" class="menu-item active">
             <img :src="reportsIcon" alt="Reports Icon" class="icon">
             Reports
           </router-link>
@@ -146,13 +146,13 @@ export default {
   },
   methods: {
     downloadReport() {
-      // solo es para mostrar la funcionalidad de descarga
+      
       alert("Downloading report...");
     },
     logout() {
       this.$router.push({ name: 'Logout' });
     }
-  }
+  } 
 };
 </script>
   

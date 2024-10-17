@@ -10,7 +10,7 @@
             <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
             Register Ticket
           </router-link>
-          <router-link to="/dashboard" class="menu-item active">
+          <router-link to="/dashboard-view" class="menu-item active">
             <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
             Dashboard
           </router-link>
@@ -22,7 +22,7 @@
             <img :src="assignmentIcon" alt="Assignment Ticket Icon" class="icon">
             Assignment Ticket
           </router-link>
-          <router-link to="/reports" class="menu-item">
+          <router-link to="/reporte-componente" class="menu-item">
             <img :src="reportsIcon" alt="Reports Icon" class="icon">
             Reports
           </router-link>
@@ -135,14 +135,30 @@ export default {
     },
     handleUserClick() {
       alert("Usuario button clicked!");
+    },
+    goCancelar() {
+      this.$router.push({ name: 'CancelarTickets' });
+    },
+    goDeliveryTickets() {
+      this.$router.push({ name: 'DeliveryTickets' });
+    },
+    goAssignmentTickets() {
+      this.$router.push({ name: 'AssignmentTickets' });
+    },
+    goReporte() {
+      this.$router.push({ name: 'ReporteComponente' });
+    },
+    goPerfilUsuario() {
+      this.$router.push({ name: 'PerfilUsuario' });
+    },
+    goDashboard() {
+      this.$router.push({ name: 'Dashboard' });
     }
   }
 }
 </script>
 
-
-
-<style  scoped>
+<style scoped>
 /* Asegura que html y body ocupen toda la pantalla sin márgenes ni padding */
 html, body {
   height: 100%;
@@ -168,7 +184,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de separación */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -197,13 +213,13 @@ html, body {
 }
 
 .menu-item:hover, .menu-item.active {
-  background-color: rgba(255, 0, 0, 0.1); /* Fondo rojo claro para el hover */
+  background-color: rgba(255, 0, 0, 0.1);
 }
 
 .logout {
-  margin-top: auto; /* Empuja el botón hacia abajo */
-  margin-bottom: 20px; /* Añade espacio adicional debajo */
-  padding-top: 200px; /* Espacio adicional arriba del botón */
+  margin-top: auto;
+  margin-bottom: 20px;
+  padding-top: 200px;
   color: #000000;
 }
 
@@ -258,7 +274,7 @@ html, body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  overflow: hidden; /* Previene el desplazamiento vertical */
+  overflow: hidden;
 }
 
 .content-box {
@@ -267,7 +283,7 @@ html, body {
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* Permite el desplazamiento interno si el contenido es grande */
+  overflow-y: auto;
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -275,7 +291,6 @@ html, body {
   gap: 20px;
 }
 
-/* Estilos para los rectángulos de colores */
 .ticket {
   width: 412px;
   height: 252px;
@@ -299,7 +314,6 @@ html, body {
   background-color: #e9a107;
 }
 
-/* Estilos para los rectángulos blancos internos */
 .white-box {
   width: 323px;
   height: 167px;
@@ -316,8 +330,8 @@ html, body {
 }
 
 .ticket-img {
-  width: 100px; /* Tamaño de la imagen */
-  margin-bottom: 10px; /* Espacio entre la imagen y el label */
+  width: 100px;
+  margin-bottom: 10px;
 }
 
 .ticket-label {
@@ -326,15 +340,13 @@ html, body {
   text-align: center;
 }
 
-/* Estilos para la imagen "bar.png" en la parte inferior */
 .bar-img {
-  width: 200px; /* Ajusta el tamaño de la imagen de la barra */
+  width: 200px;
   margin-top: auto;
 }
 
-/* Estilos para los labels debajo de cada rectángulo */
 .ticket-info {
-  margin-top: 10px; /* Espacio entre el rectángulo y los labels */
+  margin-top: 10px;
   text-align: center;
 }
 

@@ -11,7 +11,7 @@
           <img :src="registerIcon" alt="Register Ticket Icon" class="icon">
           Register Ticket
         </router-link>
-        <router-link to="/" class="menu-item">
+        <router-link to="/Dashboard-view" class="menu-item">
           <img :src="dashboardIcon" alt="Dashboard Icon" class="icon">
           Dashboard
         </router-link>
@@ -113,11 +113,81 @@ export default {
       logoutIcon,
       trashIcon,
       tickets: [
-        { FullName: 'Juan Perez', DeliveryID: 'D001', Date: '2023-10-20', Amount: '100.00', Status: 'Pending' },
-        { FullName: 'Ana Lopez', DeliveryID: 'D002', Date: '2023-10-21', Amount: '200.00', Status: 'Approved' },
-        { FullName: 'Carlos Ramirez', DeliveryID: 'D003', Date: '2023-10-22', Amount: '150.00', Status: 'Pending' },
-        { FullName: 'Maria Garcia', DeliveryID: 'D004', Date: '2023-10-23', Amount: '250.00', Status: 'Rejected' },
-        { FullName: 'Luis Martinez', DeliveryID: 'D005', Date: '2023-10-24', Amount: '300.00', Status: 'Approved' }
+      {
+          DeliveryID: 'D1001',
+          EmployeeNumber: 'E001',
+          FullName: 'Juan Pérez',
+          TravelDate: '2024-10-01',
+          Amount: '100.00',
+          TravelReason: 'Reunión de negocios',
+          VehiclesID: 'V1234',
+          Ficha: 'F001',
+          Model: 'Toyota Corolla',
+          Chasis: 'CH123456',
+          VehiclePlate: 'ABC-1234',
+          Status: 'Pendiente',
+          Action: 'Cancelar'
+        },
+        {
+          DeliveryID: 'D1002',
+          EmployeeNumber: 'E002',
+          FullName: 'María López',
+          TravelDate: '2024-10-02',
+          Amount: '150.00',
+          TravelReason: 'Entrega de mercancía',
+          VehiclesID: 'V5678',
+          Ficha: 'F002',
+          Model: 'Ford Ranger',
+          Chasis: 'CH654321',
+          VehiclePlate: 'DEF-5678',
+          Status: 'Aprobado',
+          Action: 'Cancelar'
+        },
+        {
+          DeliveryID: 'D1003',
+          EmployeeNumber: 'E003',
+          FullName: 'Carlos Ramírez',
+          TravelDate: '2024-10-03',
+          Amount: '200.00',
+          TravelReason: 'Mantenimiento de sucursal',
+          VehiclesID: 'V9101',
+          Ficha: 'F003',
+          Model: 'Chevrolet Cruze',
+          Chasis: 'CH789012',
+          VehiclePlate: 'GHI-9101',
+          Status: 'Pendiente',
+          Action: 'Cancelar'
+        },
+        {
+          DeliveryID: 'D1004',
+          EmployeeNumber: 'E004',
+          FullName: 'Ana Torres',
+          TravelDate: '2024-10-04',
+          Amount: '250.00',
+          TravelReason: 'Entrega urgente',
+          VehiclesID: 'V1123',
+          Ficha: 'F004',
+          Model: 'Honda Civic',
+          Chasis: 'CH345678',
+          VehiclePlate: 'JKL-1123',
+          Status: 'Aprobado',
+          Action: 'Cancelar'
+        },
+        {
+          DeliveryID: 'D1005',
+          EmployeeNumber: 'E005',
+          FullName: 'Pedro García',
+          TravelDate: '2024-10-05',
+          Amount: '300.00',
+          TravelReason: 'Transporte de materiales',
+          VehiclesID: 'V1456',
+          Ficha: 'F005',
+          Model: 'Hyundai Tucson',
+          Chasis: 'CH901234',
+          VehiclePlate: 'MNO-1456',
+          Status: 'Pendiente',
+          Action: 'Cancelar'
+        }
       ]
     };
   },
@@ -137,6 +207,10 @@ export default {
 
     goReporte() {
       this.$router.push({ name: 'ReporteComponente' });
+    },
+
+    godashboard() {
+      this.$router.push({ name: 'DashboardView' });
     },
 
 
