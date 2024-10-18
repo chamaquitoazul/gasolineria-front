@@ -265,7 +265,7 @@ html, body {
   }
 
 .logo {
-  width: 250px;
+  width: 200px;
   margin-bottom: 20px;
 }
 

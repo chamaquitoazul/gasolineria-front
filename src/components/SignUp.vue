@@ -42,29 +42,43 @@ export default {
       username: '',
       password: '',
       errorMessage: '',
-     
-      validUser: {
-        email: 'admin@ejemplo.com',
-        password: '123456',
-
-
-      }
-
-      
-
+      // Definir varios usuarios válidos
+      users: [
+        {
+          email: 'admin@ejemplo.com',
+          password: '123456',
+          role: 'admin', 
+          redirectRoute: 'RegistrarTickets' // Asegúrate que coincida con el nombre de la ruta
+        },
+        {
+          email: 'supervisor@ejemplo.com',
+          password: '123456',
+          role: 'supervisor',
+          redirectRoute: '' // Asegúrate que coincida con el nombre de la ruta
+        },
+        {
+          email: 'chofer@ejemplo.com',
+          password: '123456',
+          role: 'chofer',
+          redirectRoute: '' // Asegúrate que coincida con el nombre de la ruta
+        }
+      ]
     };
   },
   methods: {
     login() {
-      if (this.username === this.validUser.email && this.password === this.validUser.password) {
-        this.$router.push({ name: "CancelarTickets" }); // Redirección usando el nombre de la ruta
+      const foundUser = this.users.find(user => user.email === this.username && user.password === this.password);
+      if (foundUser) {
+        this.$router.push({ name: foundUser.redirectRoute }); // Redirige según el usuario
       } else {
         this.errorMessage = 'Usuario o contraseña incorrectos.';
       }
     }
   }
 };
+
 </script>
+
 
 <style scoped>
 /* Contenedor principal que divide la pantalla en dos */
