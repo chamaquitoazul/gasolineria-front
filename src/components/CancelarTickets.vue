@@ -45,6 +45,26 @@
     <!-- Área de Contenido Principal -->
     <main class="content">
       <div class="content-box">
+        <div class="header">
+          <div class="input-group">
+            <label for="pedido">ID del pedido:</label>
+            <input type="text" id="pedido" placeholder="Ingrese ID">
+          </div>
+          <div class="input-group">
+            <label for="empleado">Empleado:</label>
+            <input type="text" id="empleado" placeholder="Ingrese nombre">
+          </div>
+          <div class="input-group">
+            <label for="filtro">Filtro:</label>
+            <select id="filtro">
+              <option>EmployeeNumber</option>
+              <option>Ficha</option>
+              <option>Vehículo ID</option>
+            </select>
+          </div>
+        </div>
+        <hr class="separator">
+
         <!-- Tabla de Tickets -->
         <table class="ticket-table">
           <thead>
@@ -91,8 +111,6 @@
   </div>
 </template>
 
-
-  
 <script scoped>
 import registerIcon from '../assets/register-svgrepo-com.svg';
 import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
@@ -116,7 +134,7 @@ export default {
       logoutIcon,
       trashIcon,
       tickets: [
-      {
+        {
           DeliveryID: 'D1001',
           EmployeeNumber: 'E001',
           FullName: 'Juan Pérez',
@@ -207,26 +225,17 @@ export default {
     goAssignmentTickets() {
       this.$router.push({ name: 'AssignmentTickets' });
     },
-
     goReporte() {
       this.$router.push({ name: 'ReporteComponente' });
     },
-
     godashboard() {
       this.$router.push({ name: 'DashboardView' });
     },
-
-    
-
-
-
     cancelTicket(ticket) {
       this.tickets = this.tickets.filter(t => t.DeliveryID !== ticket.DeliveryID);
-      
-      
     }
   }
-}
+};
 </script>
 
 
