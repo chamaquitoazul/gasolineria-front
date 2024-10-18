@@ -250,7 +250,9 @@ export default {
 };
 </script>
     
-  <style>
+  <style >
+
+  
   /* Asegura que html y body ocupen toda la pantalla sin márgenes ni padding */
   html, body {
     height: 100%;
@@ -421,6 +423,14 @@ export default {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
-
+.top-rectangle {
+  width: 100%;
+  height: 53px;
+  background: linear-gradient(to bottom, #FF5100, #992C2C, #14033C); /* Gradiente de arriba hacia abajo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
   </style>
   

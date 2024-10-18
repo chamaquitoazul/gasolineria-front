@@ -1,112 +1,216 @@
 <template>
-    <div class="reset-password-container">
-      <div class="reset-box">
-        <h2>Restablecer contraseña</h2>
-        <p>Introduce tu correo y te enviaremos las instrucciones para restablecer tu contraseña.</p>
-        <form @submit.prevent="handleSubmit">
-          <div class="input-group">
-            <label for="email">User</label>
-            <div class="input-icon">
-              <i class="email-icon"></i>
-              <input
-                type="email"
-                id="email"
-                v-model="email"
-                placeholder="tuemail@ejemplo.com"
-                required
-              />
-            </div>
-          </div>
-          <button type="submit" class="reset-button">Restablecer</button>
-        </form>
+  <!-- Rectángulo superior -->
+  <div class="top-rectangle"></div>
+
+  <!-- Notificación de éxito -->
+  <div v-if="successMessage" class="notification">
+    {{ successMessage }}
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="main-container">
+    <!-- Contenedor del formulario de inicio de sesión -->
+    <div class="login-container">
+      <img class="logo" src="../assets/logo.png" alt="Logo">
+      <h1>Recuperar Contraseña</h1>
+
+      <!-- Texto explicativo -->
+      <p class="info-text">
+        Inserta tu correo asociado con tu cuenta para enviar el formulario de recuperación de contraseña.
+      </p>
+
+      <div class="iniciar">
+        <input v-model="username" type="text" placeholder="Email de usuario" class="input-with-icon">
+        <button @click="sendRecoveryForm">Enviar</button> <!-- Evento @click -->
+
+        <!-- Mensaje de error -->
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+
+        <p class="volver-inicio">
+           <router-link to="/">¿volver al inicio?</router-link>
+        </p>
       </div>
     </div>
-  </template>
+
+    <!-- Imagen de la gasolinera con superposición de color -->
+    <div class="image-container">
+      <img class="gasolinera" src="../assets/gasolinera.jpg" alt="gasolinera">
+      <div class="overlay"></div>
+    </div>
+  </div>
+
+  <!-- Rectángulo inferior -->
+  <div class="bottom-rectangle"></div>
+</template>
   
-  <script>
-  </script>
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      errorMessage: '',
+      successMessage: ''
+    };
+  },
+  methods: {
+    sendRecoveryForm() {
+      if (this.username === '') {
+        this.errorMessage = 'Por favor, ingresa tu correo electrónico.';
+        this.successMessage = ''; // Limpiar el mensaje de éxito
+      } else {
+        // Simulación de envío de formulario
+        this.successMessage = 'El formulario fue enviado con éxito.';
+        this.errorMessage = ''; // Limpiar el mensaje de error
+
+        
+        setTimeout(() => {
+          this.successMessage = '';
+        }, 3000);
+      }
+    }
+  }
+};
+</script>
   
   <style scoped>
-  .reset-password-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #ff5e3a, #cd2a93);
-  }
-  
-  .reset-box {
-    background-color: #f3f3f3;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 400px;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-  }
-  
-  p {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
-  .input-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .input-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .input-icon {
-    position: relative;
-  }
-  
-  .input-icon i {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #cd2a93;
-  }
-  
-  .email-icon::before {
-    content: "✉️"; /* Puedes reemplazar este icono por otro o usar una librería de iconos */
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    padding-left: 30px; /* Espacio para el icono */
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #cd2a93;
-  }
-  
-  .reset-button {
-    background-color: #ff5e3a;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .reset-button:hover {
-    background-color: #cd2a93;
-  }
-  </style>
-  
+/* Contenedor principal que divide la pantalla en dos */
+.main-container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 100px); /* Altura total menos los rectángulos superior e inferior */
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* Estilos del contenedor principal */
+.login-container {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  max-width: 900px;
+}
+
+/* Imagen de fondo de la gasolinera */
+.image-container {
+  flex: 2;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Superposición de color rojo con opacidad */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(238, 143, 143, 0.5); /* Rojo con 50% de opacidad */
+}
+
+/* Estilo del botón */
+.iniciar button {
+  width: 110px;
+  height: 25px;
+  color: white;
+  border: 2px solid red;
+  background: red;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* Estilo de los inputs */
+.iniciar input {
+  width: 300px;
+  height: 20px;
+  padding: 20px;
+  display: block;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid red;
+  border-radius: 10px;
+}
+
+/* Estilo del logo */
+.logo {
+  width: 250px;
+}
+
+/* Rectángulo superior */
+.top-rectangle {
+  width: 100%;
+  height: 53px;
+  background: linear-gradient(to bottom, #FF5100, #992C2C, #14033C); /* Gradiente de arriba hacia abajo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Rectángulo inferior */
+.bottom-rectangle {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, #14033C, #992C2C, #FF5100); /* Gradiente de arriba hacia abajo */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+
+/* Añadir estilo para el texto explicativo */
+.info-text {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+  text-align: justify;
+  max-width: 300px; /* Controla el ancho máximo */
+  margin-left: auto;
+  margin-right: auto; /* Centrar el texto */
+}
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50; /* Color verde para éxito */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-size: 14px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.volver-inicio {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.volver-inicio a {
+  color: #ff0000; /* Color rojo para el enlace */
+  text-decoration: none;
+}
+
+.volver-inicio a:hover {
+  text-decoration: underline;
+}
+
+</style>

@@ -161,4 +161,11 @@ select {
 .open-popup-button:hover {
   background-color: darkred;
 }
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    width: auto;
+}
 </style>

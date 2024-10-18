@@ -12,7 +12,14 @@
         <input v-model="username" type="text" placeholder="Email de usuario" class="input-with-icon">
         <input v-model="password" type="password" placeholder="Contraseña de usuario">
         <button @click="login">Acceder</button> <!-- Evento @click -->
-        <p v-if="errorMessage" class="error">{{ errorMessage }}</p> <!-- Mensaje de error -->
+
+        <!-- Mensaje de error -->
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+
+        <!-- Añadir texto de "¿Olvidaste tu contraseña?" -->
+        <p class="forgot-password">
+          ¿Olvidaste tu contraseña? <router-link to="/recuperar-contrasena">Recupérala</router-link>
+        </p>
       </div>
     </div>
 
@@ -35,11 +42,16 @@ export default {
       username: '',
       password: '',
       errorMessage: '',
-      // Usuario de ejemplo
+     
       validUser: {
-        email: 'usuario@ejemplo.com',
-        password: '123456'
+        email: 'admin@ejemplo.com',
+        password: '123456',
+
+
       }
+
+      
+
     };
   },
   methods: {
@@ -54,7 +66,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* Contenedor principal que divide la pantalla en dos */
 .main-container {
   display: flex;
@@ -155,5 +167,22 @@ export default {
   color: red;
   font-size: 14px;
   margin-top: 10px;
+}
+
+/* Añadir estilo para el texto de "¿Olvidaste tu contraseña?" */
+.forgot-password {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.forgot-password a {
+  color: #ff0000; /* Color rojo para el enlace */
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
 }
 </style>
