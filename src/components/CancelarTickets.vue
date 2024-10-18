@@ -133,6 +133,7 @@ export default {
       cancelIcon,
       logoutIcon,
       trashIcon,
+      notificationMessage: '',
       tickets: [
         {
           DeliveryID: 'D1001',
@@ -161,54 +162,55 @@ export default {
           Model: 'Ford Ranger',
           Chasis: 'CH654321',
           VehiclePlate: 'DEF-5678',
-          Status: 'Aprobado',
+          Status: 'Pendiente',
           Action: 'Cancelar'
         },
         {
-          DeliveryID: 'D1003',
-          EmployeeNumber: 'E003',
-          FullName: 'Carlos Ramírez',
-          TravelDate: '2024-10-03',
-          Amount: '200.00',
-          TravelReason: 'Mantenimiento de sucursal',
-          VehiclesID: 'V9101',
-          Ficha: 'F003',
-          Model: 'Chevrolet Cruze',
-          Chasis: 'CH789012',
-          VehiclePlate: 'GHI-9101',
+          DeliveryID: 'D1005',
+          EmployeeNumber: 'E002',
+          FullName: 'María López',
+          TravelDate: '2024-10-02',
+          Amount: '150.00',
+          TravelReason: 'Entrega de mercancía',
+          VehiclesID: 'V5678',
+          Ficha: 'F002',
+          Model: 'Ford Ranger',
+          Chasis: 'CH654321',
+          VehiclePlate: 'DEF-5678',
           Status: 'Pendiente',
           Action: 'Cancelar'
         },
         {
           DeliveryID: 'D1004',
-          EmployeeNumber: 'E004',
-          FullName: 'Ana Torres',
-          TravelDate: '2024-10-04',
-          Amount: '250.00',
-          TravelReason: 'Entrega urgente',
-          VehiclesID: 'V1123',
-          Ficha: 'F004',
-          Model: 'Honda Civic',
-          Chasis: 'CH345678',
-          VehiclePlate: 'JKL-1123',
-          Status: 'Aprobado',
+          EmployeeNumber: 'E002',
+          FullName: 'María López',
+          TravelDate: '2024-10-02',
+          Amount: '150.00',
+          TravelReason: 'Entrega de mercancía',
+          VehiclesID: 'V5678',
+          Ficha: 'F002',
+          Model: 'Ford Ranger',
+          Chasis: 'CH654321',
+          VehiclePlate: 'DEF-5678',
+          Status: 'Pendiente',
           Action: 'Cancelar'
         },
         {
-          DeliveryID: 'D1005',
-          EmployeeNumber: 'E005',
-          FullName: 'Pedro García',
-          TravelDate: '2024-10-05',
-          Amount: '300.00',
-          TravelReason: 'Transporte de materiales',
-          VehiclesID: 'V1456',
-          Ficha: 'F005',
-          Model: 'Hyundai Tucson',
-          Chasis: 'CH901234',
-          VehiclePlate: 'MNO-1456',
+          DeliveryID: 'D1003',
+          EmployeeNumber: 'E002',
+          FullName: 'María López',
+          TravelDate: '2024-10-02',
+          Amount: '150.00',
+          TravelReason: 'Entrega de mercancía',
+          VehiclesID: 'V5678',
+          Ficha: 'F002',
+          Model: 'Ford Ranger',
+          Chasis: 'CH654321',
+          VehiclePlate: 'DEF-5678',
           Status: 'Pendiente',
           Action: 'Cancelar'
-        }
+        },
+        // otros tickets...
       ]
     };
   },
@@ -231,16 +233,23 @@ export default {
     godashboard() {
       this.$router.push({ name: 'DashboardView' });
     },
+
+    // Método para cancelar ticket y mostrar notificación
     cancelTicket(ticket) {
       this.tickets = this.tickets.filter(t => t.DeliveryID !== ticket.DeliveryID);
+      
+      // Mostrar notificación simple
+      this.notificationMessage = `El ticket con ID ${ticket.DeliveryID} fue cancelado correctamente.`;
+      
+      // Quitar el mensaje después de 3 segundos
+      setTimeout(() => {
+        this.notificationMessage = '';
+      }, 3000);
     }
   }
 };
 </script>
-
-
-  
-  
+    
   <style>
   /* Asegura que html y body ocupen toda la pantalla sin márgenes ni padding */
   html, body {
@@ -399,7 +408,19 @@ export default {
   vertical-align: middle;
   color: #d32f2f
 }
-
+/* Estilos de la notificación */
+.notification {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50; /* Verde para éxito */
+  color: white;
+  padding: 30px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
 
   </style>
   

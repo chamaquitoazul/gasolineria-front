@@ -236,6 +236,14 @@ export default {
 
 
  <style scoped>
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 /* Contenedor Principal */
 .container {
   display: flex;
@@ -246,10 +254,15 @@ export default {
 
 /* Sidebar */
 .sidebar {
-  width: 250px;
-  background-color: #ffffff;
-  padding: 20px;
-}
+    width: 250px;
+    background-color: #ffffff;
+    color: #ff0000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de separación */
+  }
 
 .logo {
   width: 250px;
@@ -423,7 +436,7 @@ export default {
 
 .modal .form-group input, .modal .form-group select {
   padding: 10px;
-    width: 88%;
+    width: auto;
     border: 1px solid #ff0000;
     border-radius: 5px;
 }
@@ -446,4 +459,6 @@ export default {
 .modal .save-button:hover, .modal .cancel-button:hover {
   background-color: #c62828;
 }
+
+
 </style>
