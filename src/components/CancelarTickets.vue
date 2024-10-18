@@ -1,8 +1,12 @@
 <template>
   <div class="top-rectangle"></div>
 
+  <!-- Notificación de ticket borrado -->
+  <div v-if="notificationMessage" class="notification">
+    {{ notificationMessage }}
+  </div>
+
   <div class="container">
-   
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
@@ -37,10 +41,9 @@
         </a>
       </nav>
     </aside>
-   
+
     <!-- Área de Contenido Principal -->
     <main class="content">
-      
       <div class="content-box">
         <!-- Tabla de Tickets -->
         <table class="ticket-table">
@@ -212,6 +215,8 @@ export default {
     godashboard() {
       this.$router.push({ name: 'DashboardView' });
     },
+
+    
 
 
 

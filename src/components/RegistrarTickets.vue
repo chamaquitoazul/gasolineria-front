@@ -97,7 +97,7 @@
               <td>{{ ticket.sequentialTicket }}</td>
               <td>{{ ticket.barcode }}</td>
               <td>
-                <button class="edit-button">
+                <button class="edit-button" @click="openEditModal(ticket)">
                   <img :src="editIcon" alt="Edit Icon" class="icon"/>
                 </button>
               </td>
@@ -105,13 +105,43 @@
           </tbody>
         </table>
       </div>
+
+      <!-- Formulario emergente (Pop-up) para editar tickets -->
+      <div v-if="isEditModalVisible" class="modal-overlay">
+        <div class="modal">
+          <h3>Editar Ticket</h3>
+          <div class="form-group">
+            <label for="editDenomination">Denomination</label>
+            <select id="editDenomination" v-model="editTicket.denomination">
+              <option value="200">200</option>
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+              <option value="2000">2000</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editRegisterDate">Fecha de registro</label>
+            <input type="date" id="editRegisterDate" v-model="editTicket.registerDate">
+          </div>
+          <div class="form-group">
+            <label for="editSequentialTicket">Ticket Secuencial</label>
+            <input type="text" id="editSequentialTicket" v-model="editTicket.sequentialTicket" placeholder="Ingrese ticket secuencial">
+          </div>
+          <div class="form-group">
+            <label for="editBarcode">Barcode</label>
+            <input type="text" id="editBarcode" v-model="editTicket.barcode" placeholder="Ingrese código de barras">
+          </div>
+          <div class="form-buttons">
+            <button @click="saveEditedTicket" class="save-button">Guardar Cambios</button>
+            <button @click="closeEditModal" class="cancel-button">Cancelar</button>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </template>
 
-
 <script>
-import axios from 'axios';
 import registerIcon from '../assets/register-svgrepo-com.svg';
 import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
 import deliveryIcon from '../assets/mail-svgrepo-com.svg';
@@ -120,8 +150,6 @@ import reportsIcon from '../assets/file-search-alt-svgrepo-com.svg';
 import cancelIcon from '../assets/cancel-svgrepo-com.svg';
 import logoutIcon from '../assets/logout-svgrepo-com.svg';
 import editIcon from '../assets/edit-3-svgrepo-com.svg';
-
-const API_BASE_URL = 'https://localhost:7295/api';
 
 export default {
   name: 'RegistrarTickets',
@@ -142,38 +170,30 @@ export default {
         barcode: ''
       },
       tickets: [
-
-      { denomination: '200', registerDate: '2023-10-01', sequentialTicket: 'A123', barcode: 'BC1234' },
+        { denomination: '200', registerDate: '2023-10-01', sequentialTicket: 'A123', barcode: 'BC1234' },
         { denomination: '500', registerDate: '2023-10-02', sequentialTicket: 'B456', barcode: 'BC5678' },
         { denomination: '1000', registerDate: '2023-10-03', sequentialTicket: 'C789', barcode: 'BC91011' },
         { denomination: '2000', registerDate: '2023-10-04', sequentialTicket: 'D012', barcode: 'BC121314' },
         { denomination: '500', registerDate: '2023-10-05', sequentialTicket: 'E345', barcode: 'BC151617' }
-      ]
+      ],
+      isEditModalVisible: false,  // Controla la visibilidad del pop-up
+      editTicket: {
+        denomination: '',
+        registerDate: '',
+        sequentialTicket: '',
+        barcode: ''
+      }
     };
   },
   methods: {
-    loadTickets() {
-      axios.get(`${API_BASE_URL}/tickets`)
-        .then(response => {
-          this.tickets = response.data;
-        })
-        .catch(error => {
-          console.error('Error al cargar los tickets:', error);
-        });
-    },
     addTicket() {
       if (this.newTicket.denomination && this.newTicket.registerDate && this.newTicket.sequentialTicket && this.newTicket.barcode) {
-        axios.post(`${API_BASE_URL}/tickets`, this.newTicket)
-          .then(response => {
-            this.tickets.push(response.data); // Agrega el nuevo ticket a la lista actual
-            this.clearForm();
-          })
-          .catch(error => {
-            console.error('Error al crear el ticket:', error);
-          });
+        // Agregar el nuevo ticket a la lista
+        this.tickets.push({ ...this.newTicket });
+        this.clearForm();
       } else {
         alert("Por favor, completa todos los campos del formulario.");
-      }
+      } 
     },
     clearForm() {
       this.newTicket = {
@@ -189,29 +209,26 @@ export default {
     logout() {
       this.$router.push({ name: 'SignUp' });
     },
-    gocancelar() {
-      this.$router.push({ name: 'CancelarTickets' });
+    openEditModal(ticket) {
+      this.editTicket = { ...ticket }; // Clona los datos del ticket seleccionado para editar
+      this.isEditModalVisible = true;
     },
-    goDeliveryTickets() {
-      this.$router.push({ name: 'DeliveryTickets' });
+    closeEditModal() {
+      this.isEditModalVisible = false;
     },
-    goAssignmentTickets() {
-      this.$router.push({ name: 'AssignmentTickets' });
+    saveEditedTicket() {
+      const index = this.tickets.findIndex(t => t.sequentialTicket === this.editTicket.sequentialTicket);
+      if (index !== -1) {
+        this.tickets.splice(index, 1, this.editTicket); // Reemplaza el ticket editado
+      }
+      this.closeEditModal();
     },
-
-    goReporte() {
-      this.$router.push({ name: 'ReporteComponente' });
+    goPerfilUsuario() {
+      this.$router.push({ name: 'PerfilUsuario' });
+    },
+    goDashboard() {
+      this.$router.push({ name: 'Dashboard' });
     }
-
-  },
-  goPerfilUsuario() {
-    this.$router.push({ name: 'PerfilUsuario' });
-  },
-  goDashboard() {
-    this.$router.push({ name: 'Dashboard' });
-  },
-  mounted() {
-    this.loadTickets();
   }
 };
 </script>
@@ -368,4 +385,65 @@ export default {
   color: #d32f2f
 }
 
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal h3 {
+  margin-bottom: 20px;
+}
+
+.modal .form-group {
+  margin-bottom: 15px;
+}
+
+.modal .form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.modal .form-group input, .modal .form-group select {
+  padding: 10px;
+    width: 88%;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+}
+
+.modal .form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal .save-button, .modal .cancel-button {
+  padding: 10px;
+  width: 48%;
+  color: white;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal .save-button:hover, .modal .cancel-button:hover {
+  background-color: #c62828;
+}
 </style>
