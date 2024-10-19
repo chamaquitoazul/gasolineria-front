@@ -51,9 +51,19 @@
           <li>Logout</li>
         </ul>
       </aside>-->
-  
+
       <!-- Tabla de reportes -->
       <main class="report-table">
+        <div class="intr-group">
+            <label for="empleado">Empleado:</label>
+            <input type="text" id="empleado" placeholder="Ingrese nombre" class="search-bar">
+            <button class="search-button" @click="search">Buscar</button>
+        </div>
+        <div class="intr-group">
+            <label for="searchDate">Fecha de busqueda</label>
+            <input type="date" id="searchDate" placeholder="dd/mm/yy" class="search-bar">
+          <button class="search-button" @click="search">Buscar</button>
+          </div>
         <table>
           <thead>
             <tr>
@@ -115,6 +125,7 @@ export default {
         municipality: '',
         reason: '',
         registerDate: '',
+        searchDate: '',
         travelDate: '',
         amount: '',
         details: ''
@@ -163,7 +174,7 @@ export default {
     height: 100vh;
     background-color: #f8dada;
   }
-  
+
   /* Barra lateral */
   .sidebar {
     background-color: #ffffff;
@@ -201,6 +212,56 @@ export default {
   .sidebar-menu li:hover {
     background-color: #e35c5c;
   }
+
+  
+  /*.intr-group {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  }*/
+
+  .intr-group {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.intr-group label {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.intr-group input, .intr-group select {
+  padding: 8px 10px;
+    border-radius: 10px;
+    border: 2px solid #ff0000;
+    background-color: #ffffff;
+}
+
+
+.search-bar {
+  width: 100%;
+  max-width: 400px; /* Tamaño máximo */
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px; /* Bordes redondeados */
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.search-button {
+  background-color: #980e0e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 0 25px 25px 0; /* Bordes redondeados solo en el lado derecho */
+  font-size: 16px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
   
   /* Tabla de reportes */
   .report-table {
