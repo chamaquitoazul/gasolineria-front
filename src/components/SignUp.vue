@@ -50,17 +50,12 @@ export default {
           role: 'admin', 
           redirectRoute: 'RegistrarTickets' // Asegúrate que coincida con el nombre de la ruta
         },
-        {
-          email: 'supervisor@ejemplo.com',
-          password: '123456',
-          role: 'supervisor',
-          redirectRoute: '' // Asegúrate que coincida con el nombre de la ruta
-        },
+      
         {
           email: 'chofer@ejemplo.com',
           password: '123456',
           role: 'chofer',
-          redirectRoute: '' // Asegúrate que coincida con el nombre de la ruta
+          redirectRoute: 'dashboard-chofer' // Asegúrate que coincida con el nombre de la ruta
         }
       ]
     };

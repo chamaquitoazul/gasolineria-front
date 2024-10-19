@@ -37,6 +37,15 @@
       </nav>
     </aside>
 
+    <div class="headerfuera">
+  <div class="header-title">
+    <h1>Registar Usuario</h1>
+  </div>
+  <div class="header-user" @click="goToUserProfile">
+    <img src="../assets/person_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt="User Icon" class="user-icon">
+    <span>Usuario</span>
+  </div>
+</div>
     <!-- Área de Contenido Principal -->
     <main class="content">
       <div class="content-box">
@@ -142,6 +151,7 @@
 </template>
 
 <script>
+import { useToast } from 'vue-toastification'; 
 import registerIcon from '../assets/register-svgrepo-com.svg';
 import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
 import deliveryIcon from '../assets/mail-svgrepo-com.svg';
@@ -185,11 +195,16 @@ export default {
       }
     };
   },
+  setup() {
+    const toast = useToast(); // Inicializa Toast
+    return { toast };
+  },
   methods: {
     addTicket() {
       if (this.newTicket.denomination && this.newTicket.registerDate && this.newTicket.sequentialTicket && this.newTicket.barcode) {
         // Agregar el nuevo ticket a la lista
         this.tickets.push({ ...this.newTicket });
+        this.toast.success('El ticket fue creado con éxito'); // Notificación de éxito
         this.clearForm();
       } else {
         alert("Por favor, completa todos los campos del formulario.");
@@ -213,6 +228,10 @@ export default {
       this.editTicket = { ...ticket }; // Clona los datos del ticket seleccionado para editar
       this.isEditModalVisible = true;
     },
+
+    goToUserProfile() {
+      this.$router.push('/perfil-usuario'); // Redirige a la página de perfil del usuario
+    },
     closeEditModal() {
       this.isEditModalVisible = false;
     },
@@ -220,6 +239,7 @@ export default {
       const index = this.tickets.findIndex(t => t.sequentialTicket === this.editTicket.sequentialTicket);
       if (index !== -1) {
         this.tickets.splice(index, 1, this.editTicket); // Reemplaza el ticket editado
+        this.toast.success('El ticket fue modificado con éxito'); // Notificación de éxito al modificar
       }
       this.closeEditModal();
     },
@@ -232,6 +252,8 @@ export default {
   }
 };
 </script>
+
+
 
 
 
@@ -460,5 +482,50 @@ html, body {
   background-color: #c62828;
 }
 
+
+</style>
+
+<style scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.logo {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+
+  .header-title {
+position: absolute;
+top: 5%;
+left: 15%;
+
+}
+.header-user {
+position: absolute;
+top: 7%;
+left: 91%;
+font-size: 20px;
+cursor: pointer;
+font-weight: bold;
+}
+
+.user-icon{
+
+  width: 50px; /* Ajusta el tamaño del ícono según tus preferencias */
+  height: 30px;
+
+}
 
 </style>

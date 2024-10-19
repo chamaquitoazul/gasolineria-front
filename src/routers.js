@@ -8,6 +8,7 @@ import PerfilUsuario from "./components/PerfilUsuario.vue";
 import ReporteComponente from "./components/ReporteComponente.vue";
 import DashboardView from "./components/Dashboard.vue";
 import RecuperarContraseña from "./components/RecuperarContraseña.vue";
+import DashboardChofer from "./components/DashboardChofer.vue";
 import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
@@ -62,6 +63,15 @@ const routes = [
     component: RecuperarContraseña,
     path: "/recuperar-contrasena",
   },
+
+  {
+    name: "DashboardChofer",
+    component: DashboardChofer,
+    path: "/dashboard-chofer",
+  },
+
+
+
 ];
 
 const router = createRouter({

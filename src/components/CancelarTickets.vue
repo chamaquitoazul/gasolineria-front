@@ -1,12 +1,8 @@
 <template>
   <div class="top-rectangle"></div>
 
-  <!-- Notificación de ticket borrado -->
-  <div v-if="notificationMessage" class="notification">
-    {{ notificationMessage }}
-  </div>
-
   <div class="container">
+
     <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
@@ -41,10 +37,22 @@
         </a>
       </nav>
     </aside>
+<!-- Header con título y usuario -->
+<div class="headerfuera">
+  <div class="header-title">
+    <h1>Cancelar Tickets</h1>
+  </div>
+  <div class="header-user" @click="goToUserProfile">
+    <img src="../assets/person_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt="User Icon" class="user-icon">
+    <span>Usuario</span>
+  </div>
+</div>
 
     <!-- Área de Contenido Principal -->
     <main class="content">
       <div class="content-box">
+        
+
         <div class="header">
           <div class="input-group">
             <label for="pedido">ID del pedido:</label>
@@ -111,7 +119,11 @@
   </div>
 </template>
 
-<script scoped>
+
+
+<script>
+
+import { useToast } from 'vue-toastification'; 
 import registerIcon from '../assets/register-svgrepo-com.svg';
 import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
 import deliveryIcon from '../assets/mail-svgrepo-com.svg';
@@ -124,7 +136,7 @@ import trashIcon from '../assets/trash-bin-trash-svgrepo-com.svg';
 export default {
   name: 'CancelarTickets',
   data() {
-    return { 
+    return {
       registerIcon,
       dashboardIcon,
       deliveryIcon,
@@ -133,7 +145,7 @@ export default {
       cancelIcon,
       logoutIcon,
       trashIcon,
-      notificationMessage: '',
+      filterOption: 'EmployeeNumber', 
       tickets: [
         {
           DeliveryID: 'D1001',
@@ -147,7 +159,7 @@ export default {
           Model: 'Toyota Corolla',
           Chasis: 'CH123456',
           VehiclePlate: 'ABC-1234',
-          Status: 'Pendiente',
+          Status: 'Tomado',
           Action: 'Cancelar'
         },
         {
@@ -155,104 +167,105 @@ export default {
           EmployeeNumber: 'E002',
           FullName: 'María López',
           TravelDate: '2024-10-02',
-          Amount: '150.00',
+          Amount: '2000.00',
           TravelReason: 'Entrega de mercancía',
           VehiclesID: 'V5678',
           Ficha: 'F002',
           Model: 'Ford Ranger',
           Chasis: 'CH654321',
           VehiclePlate: 'DEF-5678',
-          Status: 'Pendiente',
-          Action: 'Cancelar'
-        },
-        {
-          DeliveryID: 'D1005',
-          EmployeeNumber: 'E002',
-          FullName: 'María López',
-          TravelDate: '2024-10-02',
-          Amount: '150.00',
-          TravelReason: 'Entrega de mercancía',
-          VehiclesID: 'V5678',
-          Ficha: 'F002',
-          Model: 'Ford Ranger',
-          Chasis: 'CH654321',
-          VehiclePlate: 'DEF-5678',
-          Status: 'Pendiente',
-          Action: 'Cancelar'
-        },
-        {
-          DeliveryID: 'D1004',
-          EmployeeNumber: 'E002',
-          FullName: 'María López',
-          TravelDate: '2024-10-02',
-          Amount: '150.00',
-          TravelReason: 'Entrega de mercancía',
-          VehiclesID: 'V5678',
-          Ficha: 'F002',
-          Model: 'Ford Ranger',
-          Chasis: 'CH654321',
-          VehiclePlate: 'DEF-5678',
-          Status: 'Pendiente',
+          Status: 'Tomado',
           Action: 'Cancelar'
         },
         {
           DeliveryID: 'D1003',
-          EmployeeNumber: 'E002',
-          FullName: 'María López',
-          TravelDate: '2024-10-02',
-          Amount: '150.00',
-          TravelReason: 'Entrega de mercancía',
-          VehiclesID: 'V5678',
-          Ficha: 'F002',
-          Model: 'Ford Ranger',
-          Chasis: 'CH654321',
-          VehiclePlate: 'DEF-5678',
-          Status: 'Pendiente',
+          EmployeeNumber: 'E003',
+          FullName: 'Carlos Ramírez',
+          TravelDate: '2024-10-03',
+          Amount: '200.00',
+          TravelReason: 'Mantenimiento de sucursal',
+          VehiclesID: 'V9101',
+          Ficha: 'F003',
+          Model: 'Chevrolet Cruze',
+          Chasis: 'CH789012',
+          VehiclePlate: 'GHI-9101',
+          Status: 'Tomado',
           Action: 'Cancelar'
         },
-        // otros tickets...
+        {
+          DeliveryID: 'D1004',
+          EmployeeNumber: 'E004',
+          FullName: 'Ana Torres',
+          TravelDate: '2024-10-04',
+          Amount: '1200.00',
+          TravelReason: 'Entrega urgente',
+          VehiclesID: 'V1123',
+          Ficha: 'F004',
+          Model: 'Honda Civic',
+          Chasis: 'CH345678',
+          VehiclePlate: 'JKL-1123',
+          Status: 'Tomado',
+          Action: 'Cancelar'
+        },
+        {
+          DeliveryID: 'D1005',
+          EmployeeNumber: 'E005',
+          FullName: 'Pedro García',
+          TravelDate: '2024-10-05',
+          Amount: '3000.00',
+          TravelReason: 'Transporte de materiales',
+          VehiclesID: 'V1456',
+          Ficha: 'F005',
+          Model: 'Hyundai Tucson',
+          Chasis: 'CH901234',
+          VehiclePlate: 'MNO-1456',
+          Status: 'Tomado',
+          Action: 'Cancelar'
+        }
       ]
     };
   },
-  methods: {
+  setup() {
+    const toast = useToast(); // Inicializa Toast
+    return { toast };
+  },
+  computed: {
+    // Computed para filtrar tickets
+    filteredTickets() {
+      return this.tickets.filter(ticket => {
+        const searchValue = this.searchTerm.toLowerCase();
+        return ticket[this.filterOption].toString().toLowerCase().includes(searchValue);
+      });
+    }
+  },
+  methods: { 
+
+    goToUserProfile() {
+      this.$router.push('/perfil-usuario'); // Redirige a la página de perfil del usuario
+    },
+
     logout() {
       this.$router.push({ name: 'SignUp' });
     },
-    gotickets() {
-      this.$router.push({ name: 'RegistrarTickets' });
-    },
-    goDeliveryTickets() {
-      this.$router.push({ name: 'DeliveryTickets' });
-    },
-    goAssignmentTickets() {
-      this.$router.push({ name: 'AssignmentTickets' });
-    },
-    goReporte() {
-      this.$router.push({ name: 'ReporteComponente' });
-    },
-    godashboard() {
-      this.$router.push({ name: 'DashboardView' });
-    },
-
-    // Método para cancelar ticket y mostrar notificación
     cancelTicket(ticket) {
       this.tickets = this.tickets.filter(t => t.DeliveryID !== ticket.DeliveryID);
       
-      // Mostrar notificación simple
-      this.notificationMessage = `El ticket con ID ${ticket.DeliveryID} fue cancelado correctamente.`;
-      
-      // Quitar el mensaje después de 3 segundos
-      setTimeout(() => {
-        this.notificationMessage = '';
-      }, 3000);
+      // Muestra una notificación de éxito
+      this.toast.success(`El ticket con ID ${ticket.DeliveryID} fue cancelado con éxito.`, {
+        timeout: 3000, // Duración de 3 segundos
+        position: 'top-right',
+      });
     }
   }
 };
 </script>
-    
-  <style >
 
-  
+
+
+    
+ 
+ <style >
+
   /* Asegura que html y body ocupen toda la pantalla sin márgenes ni padding */
   html, body {
     height: 100%;
@@ -281,10 +294,7 @@ export default {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de separación */
   }
   
-  .logo {
-    width: 250px;
-    margin-bottom: 20px;
-  }
+ 
   
   /* Menú de navegación */
   .menu {
@@ -433,4 +443,50 @@ export default {
   z-index: 1;
 }
   </style>
+
+
+<style scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.logo {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+
+  .header-title {
+position: absolute;
+top: 5%;
+left: 15%;
+
+}
+.header-user {
+position: absolute;
+top: 7%;
+left: 90%;
+font-size: 20px;
+cursor: pointer;
+font-weight: bold;
+}
+
+.user-icon{
+
+  width: 50px; /* Ajusta el tamaño del ícono según tus preferencias */
+  height: 30px;
+
+}
+
+</style>
   

@@ -14,10 +14,11 @@
           <i class="icon">👥</i>
           Gestión de Usuarios
         </a>
-        <a href="#" class="menu-item">
-          <i class="icon">🚪</i>
-          Logout
-        </a>
+        <a href="#" class="menu-item" @click.prevent="logout">
+  <i class="icon">🚪</i>
+  Logout
+</a>
+
       </nav>
     </aside>
 
@@ -114,12 +115,19 @@ export default {
     deleteUser(id) {
       console.log("Eliminar usuario", id);
       this.users = this.users.filter(user => user.id !== id); // Eliminar usuario de la lista
-    },
+    }, 
+    logout() {
+    this.$router.push({ name: 'SignUp' }); // Cambia 'SignUp' a la ruta que quieras redirigir para el logout
+  },
+
+
+
     resetForm() {
       this.email = '';
       this.password = '';
       this.role = '';
     }
+    
   },
 };
 </script>
