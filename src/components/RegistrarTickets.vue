@@ -1,8 +1,6 @@
 <template>
   <div class="top-rectangle"></div>
-
   <div class="container">
-    <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
       <nav class="menu">
@@ -36,7 +34,6 @@
         </a>
       </nav>
     </aside>
-
     <div class="headerfuera">
   <div class="header-title">
     <h1>Registar Usuario</h1>
@@ -46,18 +43,15 @@
     <span>Usuario</span>
   </div>
 </div>
-    <!-- Área de Contenido Principal -->
     <main class="content">
       <div class="content-box">
-        <!-- Contador de tickets centrado -->
+      
         <div class="ticket-counter-centered">
           <div class="counter-circle">
             <span>{{ tickets.length }}</span>
           </div>
           <p>Tickets creados</p>
         </div>
-
-        <!-- Formulario de Registro -->
         <div class="form">
           <div class="form-group">
             <label for="denomination">Denomination</label>
@@ -86,8 +80,6 @@
             <button @click="finalizeTicket" class="finalize-button">Finalizar</button>
           </div>
         </div>
-
-        <!-- Tabla de Tickets Recientes -->
         <h3>Tickets creados recientemente</h3>
         <table class="recent-tickets">
           <thead>
@@ -114,8 +106,6 @@
           </tbody>
         </table>
       </div>
-
-      <!-- Formulario emergente (Pop-up) para editar tickets -->
       <div v-if="isEditModalVisible" class="modal-overlay">
         <div class="modal">
           <h3>Editar Ticket</h3>
@@ -186,7 +176,7 @@ export default {
         { denomination: '2000', registerDate: '2023-10-04', sequentialTicket: 'D012', barcode: 'BC121314' },
         { denomination: '500', registerDate: '2023-10-05', sequentialTicket: 'E345', barcode: 'BC151617' }
       ],
-      isEditModalVisible: false,  // Controla la visibilidad del pop-up
+      isEditModalVisible: false, 
       editTicket: {
         denomination: '',
         registerDate: '',
@@ -196,15 +186,14 @@ export default {
     };
   },
   setup() {
-    const toast = useToast(); // Inicializa Toast
+    const toast = useToast(); 
     return { toast };
   },
   methods: {
     addTicket() {
       if (this.newTicket.denomination && this.newTicket.registerDate && this.newTicket.sequentialTicket && this.newTicket.barcode) {
-        // Agregar el nuevo ticket a la lista
         this.tickets.push({ ...this.newTicket });
-        this.toast.success('El ticket fue creado con éxito'); // Notificación de éxito
+        this.toast.success('El ticket fue creado con éxito'); 
         this.clearForm();
       } else {
         alert("Por favor, completa todos los campos del formulario.");
@@ -225,12 +214,12 @@ export default {
       this.$router.push({ name: 'SignUp' });
     },
     openEditModal(ticket) {
-      this.editTicket = { ...ticket }; // Clona los datos del ticket seleccionado para editar
+      this.editTicket = { ...ticket }; 
       this.isEditModalVisible = true;
     },
 
     goToUserProfile() {
-      this.$router.push('/perfil-usuario'); // Redirige a la página de perfil del usuario
+      this.$router.push('/perfil-usuario'); 
     },
     closeEditModal() {
       this.isEditModalVisible = false;
@@ -238,8 +227,8 @@ export default {
     saveEditedTicket() {
       const index = this.tickets.findIndex(t => t.sequentialTicket === this.editTicket.sequentialTicket);
       if (index !== -1) {
-        this.tickets.splice(index, 1, this.editTicket); // Reemplaza el ticket editado
-        this.toast.success('El ticket fue modificado con éxito'); // Notificación de éxito al modificar
+        this.tickets.splice(index, 1, this.editTicket); 
+        this.toast.success('El ticket fue modificado con éxito'); 
       }
       this.closeEditModal();
     },
@@ -266,7 +255,7 @@ html, body {
     padding: 0;
     overflow: hidden;
   }
-/* Contenedor Principal */
+
 .container {
   display: flex;
   height: 100vh;
@@ -274,7 +263,7 @@ html, body {
   background: linear-gradient(to bottom, #FFEAE0, #F16564);
 }
 
-/* Sidebar */
+
 .sidebar {
     width: 250px;
     background-color: #ffffff;
@@ -283,7 +272,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de separación */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
   }
 
 .logo {
@@ -295,7 +284,6 @@ html, body {
   background-color: rgba(255, 0, 0, 0.1);
 }
 
-/* Contenido Principal */
 .content {
   flex: 1;
   display: flex;
@@ -314,7 +302,7 @@ html, body {
   text-align: center;
 }
 
-/* Contador Centrally Positioned */
+
 .ticket-counter-centered {
   display: flex;
   flex-direction: column;
@@ -337,12 +325,12 @@ html, body {
   margin-bottom: 5px;
 }
 
-/* Formulario */
+
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin-top: 20px; /* Ajusta la distancia para el centrado */
+  margin-top: 20px; 
 }
 
 .form-group {
@@ -383,7 +371,7 @@ html, body {
 .cancel-button { background-color: #c62828; }
 .finalize-button { background-color: #c62828; }
 
-/* Tabla */
+
 .recent-tickets {
   width: 100%;
   margin-top: 20px;
@@ -420,7 +408,7 @@ html, body {
   color: #d32f2f
 }
 
-/* Modal overlay */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -434,7 +422,7 @@ html, body {
   z-index: 1000;
 }
 
-/* Modal content */
+
 .modal {
   background-color: white;
   padding: 20px;
@@ -523,7 +511,7 @@ font-weight: bold;
 
 .user-icon{
 
-  width: 50px; /* Ajusta el tamaño del ícono según tus preferencias */
+  width: 50px; 
   height: 30px;
 
 }

@@ -2,8 +2,6 @@
   <div class="top-rectangle"></div>
 
   <div class="container">
-
-    <!-- Menú de Navegación Vertical -->
     <aside class="sidebar">
       <img class="logo" src="../assets/logo.png" alt="Logo">
       <nav class="menu">
@@ -37,7 +35,6 @@
         </a>
       </nav>
     </aside>
-<!-- Header con título y usuario -->
 <div class="headerfuera">
   <div class="header-title">
     <h1>Cancelar Tickets</h1>
@@ -47,8 +44,6 @@
     <span>Usuario</span>
   </div>
 </div>
-
-    <!-- Área de Contenido Principal -->
     <main class="content">
       <div class="content-box">
         
@@ -72,8 +67,6 @@
           </div>
         </div>
         <hr class="separator">
-
-        <!-- Tabla de Tickets -->
         <table class="ticket-table">
           <thead>
             <tr>
@@ -226,11 +219,11 @@ export default {
     };
   },
   setup() {
-    const toast = useToast(); // Inicializa Toast
+    const toast = useToast(); 
     return { toast };
   },
   computed: {
-    // Computed para filtrar tickets
+    
     filteredTickets() {
       return this.tickets.filter(ticket => {
         const searchValue = this.searchTerm.toLowerCase();
@@ -241,7 +234,7 @@ export default {
   methods: { 
 
     goToUserProfile() {
-      this.$router.push('/perfil-usuario'); // Redirige a la página de perfil del usuario
+      this.$router.push('/perfil-usuario'); 
     },
 
     logout() {
@@ -250,9 +243,9 @@ export default {
     cancelTicket(ticket) {
       this.tickets = this.tickets.filter(t => t.DeliveryID !== ticket.DeliveryID);
       
-      // Muestra una notificación de éxito
+      
       this.toast.success(`El ticket con ID ${ticket.DeliveryID} fue cancelado con éxito.`, {
-        timeout: 3000, // Duración de 3 segundos
+        timeout: 3000, 
         position: 'top-right',
       });
     }
@@ -266,7 +259,7 @@ export default {
  
  <style >
 
-  /* Asegura que html y body ocupen toda la pantalla sin márgenes ni padding */
+ 
   html, body {
     height: 100%;
     margin: 0;
@@ -274,7 +267,7 @@ export default {
     overflow: hidden;
   }
   
-  /* Contenedor principal */
+
   .container {
     display: flex;
     height: 100vh;
@@ -282,7 +275,7 @@ export default {
     background: linear-gradient(to bottom, #FFEAE0, #F16564);
   }
   
-  /* Sidebar de navegación */
+  
   .sidebar {
     width: 250px;
     background-color: #ffffff;
@@ -291,12 +284,12 @@ export default {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de separación */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
   }
   
  
   
-  /* Menú de navegación */
+ 
   .menu {
     width: 100%;
   }
@@ -317,7 +310,7 @@ export default {
   }
   
   .menu-item:hover, .menu-item.active {
-    background-color: rgba(255, 0, 0, 0.1); /* Fondo rojo claro para el hover */
+    background-color: rgba(255, 0, 0, 0.1); 
   }
   
   .logout {
@@ -327,15 +320,13 @@ export default {
     color: #000000;
 }
 
-  
-  /* Área de contenido principal */
   .content {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    overflow: hidden; /* Previene el desplazamiento vertical */
+    overflow: hidden; 
   }
   
   .content-box {
@@ -344,7 +335,7 @@ export default {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Permite el desplazamiento interno si el contenido es grande */
+    overflow-y: auto;
     padding: 20px;
   }
 
@@ -376,7 +367,7 @@ export default {
   margin-top: 10px;
   border: none;
   height: 8px;
-  background-color: #B22222; /* Color rojo */
+  background-color: #B22222; 
 }
 
 .ticket-table {
@@ -420,13 +411,13 @@ export default {
   vertical-align: middle;
   color: #d32f2f
 }
-/* Estilos de la notificación */
+
 .notification {
   position: fixed;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #4CAF50; /* Verde para éxito */
+  background-color: #4CAF50; 
   color: white;
   padding: 30px 30px;
   border-radius: 5px;
@@ -436,7 +427,7 @@ export default {
 .top-rectangle {
   width: 100%;
   height: 53px;
-  background: linear-gradient(to bottom, #FF5100, #992C2C, #14033C); /* Gradiente de arriba hacia abajo */
+  background: linear-gradient(to bottom, #FF5100, #992C2C, #14033C); 
   position: fixed;
   top: 0;
   left: 0;
@@ -483,7 +474,7 @@ font-weight: bold;
 
 .user-icon{
 
-  width: 50px; /* Ajusta el tamaño del ícono según tus preferencias */
+  width: 50px; 
   height: 30px;
 
 }

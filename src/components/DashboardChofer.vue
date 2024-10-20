@@ -2,7 +2,7 @@
   <div>
     <div class="top-rectangle"></div>
     <div class="container">
-      <!-- Menú de Navegación Vertical -->
+   
       <aside class="sidebar">
         <img class="logo" src="../assets/logo.png" alt="Logo">
         <nav class="menu">
@@ -17,7 +17,7 @@
         </nav>
       </aside>
 
-      <!-- Nuevo headerfuera -->
+      
       <div class="headerfuera">
         <div class="header-title">
           <h1>Cancelar Tickets</h1>
@@ -28,10 +28,10 @@
         </div>
       </div>
 
-      <!-- Área de Contenido Principal -->
+      >
       <main class="content">
         <div class="content-box">
-          <!-- Tabla de Pending Tickets -->
+      
           <h2>Pending Tickets</h2>
           <table class="ticket-table">
             <thead>
@@ -55,7 +55,6 @@
             </tbody>
           </table>
 
-          <!-- Tabla de Completed Tickets -->
           <h2>Completed Tickets</h2>
           <table class="ticket-table">
             <thead>
@@ -122,7 +121,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para un efecto de separación */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
 }
 
 .logo {
@@ -150,7 +149,7 @@ html, body {
 }
 
 .menu-item:hover, .menu-item.active {
-    background-color: rgba(255, 0, 0, 0.1); /* Fondo rojo claro para el hover */
+    background-color: rgba(255, 0, 0, 0.1);
 }
 
 .logout {
@@ -199,7 +198,7 @@ font-weight: bold;
 
 .user-icon{
 
-  width: 50px; /* Ajusta el tamaño del ícono según tus preferencias */
+  width: 50px; 
   height: 30px;
 
 }

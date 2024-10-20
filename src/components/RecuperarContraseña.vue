@@ -1,45 +1,29 @@
 <template>
-  <!-- Rectángulo superior -->
   <div class="top-rectangle"></div>
-
-  <!-- Notificación de éxito -->
   <div v-if="successMessage" class="notification">
     {{ successMessage }}
   </div>
-
-  <!-- Contenedor principal -->
   <div class="main-container">
-    <!-- Contenedor del formulario de inicio de sesión -->
     <div class="login-container">
       <img class="logo" src="../assets/logo.png" alt="Logo">
       <h1>Recuperar Contraseña</h1>
-
-      <!-- Texto explicativo -->
       <p class="info-text">
         Inserta tu correo asociado con tu cuenta para enviar el formulario de recuperación de contraseña.
       </p>
-
       <div class="iniciar">
         <input v-model="username" type="text" placeholder="Email de usuario" class="input-with-icon">
-        <button @click="sendRecoveryForm">Enviar</button> <!-- Evento @click -->
-
-        <!-- Mensaje de error -->
+        <button @click="sendRecoveryForm">Enviar</button> 
         <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
-
         <p class="volver-inicio">
            <router-link to="/">¿volver al inicio?</router-link>
         </p>
       </div>
     </div>
-
-    <!-- Imagen de la gasolinera con superposición de color -->
     <div class="image-container">
       <img class="gasolinera" src="../assets/gasolinera.jpg" alt="gasolinera">
       <div class="overlay"></div>
     </div>
   </div>
-
-  <!-- Rectángulo inferior -->
   <div class="bottom-rectangle"></div>
 </template>
   
@@ -56,11 +40,10 @@ export default {
     sendRecoveryForm() {
       if (this.username === '') {
         this.errorMessage = 'Por favor, ingresa tu correo electrónico.';
-        this.successMessage = ''; // Limpiar el mensaje de éxito
+        this.successMessage = ''; 
       } else {
-        // Simulación de envío de formulario
         this.successMessage = 'El formulario fue enviado con éxito.';
-        this.errorMessage = ''; // Limpiar el mensaje de error
+        this.errorMessage = ''; 
 
         
         setTimeout(() => {
@@ -73,16 +56,16 @@ export default {
 </script>
   
   <style scoped>
-/* Contenedor principal que divide la pantalla en dos */
+
 .main-container {
   display: flex;
   width: 100%;
-  height: calc(100vh - 100px); /* Altura total menos los rectángulos superior e inferior */
+  height: calc(100vh - 100px);
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-/* Estilos del contenedor principal */
+
 .login-container {
   flex: 1;
   background-color: white;
@@ -94,7 +77,7 @@ export default {
   max-width: 900px;
 }
 
-/* Imagen de fondo de la gasolinera */
+
 .image-container {
   flex: 2;
   position: relative;
@@ -107,17 +90,16 @@ export default {
   object-fit: cover;
 }
 
-/* Superposición de color rojo con opacidad */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(238, 143, 143, 0.5); /* Rojo con 50% de opacidad */
+  background-color: rgba(238, 143, 143, 0.5); 
 }
 
-/* Estilo del botón */
+
 .iniciar button {
   width: 110px;
   height: 25px;
@@ -128,7 +110,6 @@ export default {
   border-radius: 10px;
 }
 
-/* Estilo de los inputs */
 .iniciar input {
   width: 300px;
   height: 20px;
@@ -141,49 +122,46 @@ export default {
   border-radius: 10px;
 }
 
-/* Estilo del logo */
+
 .logo {
   width: 250px;
 }
 
-/* Rectángulo superior */
+
 .top-rectangle {
   width: 100%;
   height: 53px;
-  background: linear-gradient(to bottom, #FF5100, #992C2C, #14033C); /* Gradiente de arriba hacia abajo */
+  background: linear-gradient(to bottom, #FF5100, #992C2C, #14033C); 
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-/* Rectángulo inferior */
 .bottom-rectangle {
   width: 100%;
   height: 50px;
-  background: linear-gradient(to bottom, #14033C, #992C2C, #FF5100); /* Gradiente de arriba hacia abajo */
-  position: fixed;
+  background: linear-gradient(to bottom, #14033C, #992C2C, #FF5100); 
   bottom: 0;
   left: 0;
   z-index: 1;
 }
 
 
-/* Añadir estilo para el texto explicativo */
 .info-text {
   margin-bottom: 10px;
   font-size: 14px;
   color: #555;
   text-align: justify;
-  max-width: 300px; /* Controla el ancho máximo */
+  max-width: 300px; 
   margin-left: auto;
-  margin-right: auto; /* Centrar el texto */
+  margin-right: auto; 
 }
 .notification {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #4CAF50; /* Color verde para éxito */
+  background-color: #4CAF50; 
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -205,7 +183,7 @@ export default {
 }
 
 .volver-inicio a {
-  color: #ff0000; /* Color rojo para el enlace */
+  color: #ff0000; 
   text-decoration: none;
 }
 
