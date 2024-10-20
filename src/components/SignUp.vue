@@ -7,7 +7,7 @@
       <div class="iniciar">
         <input v-model="username" type="text" placeholder="Email de usuario" class="input-with-icon">
         <input v-model="password" type="password" placeholder="Contraseña de usuario">
-        <button @click="login">Acceder</button> <!-- Evento @click -->
+        <button @click="login">Acceder</button> 
         <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
         <p class="forgot-password">
           ¿Olvidaste tu contraseña? <router-link to="/recuperar-contrasena">Recupérala</router-link>
@@ -43,7 +43,7 @@ export default {
           email: 'chofer@ejemplo.com',
           password: '123456',
           role: 'chofer',
-          redirectRoute: 'DashboardChofer' // Asegúrate que coincida con el nombre de la ruta
+          redirectRoute: 'DashboardChofer' 
         }
       ]
     };
@@ -146,7 +146,7 @@ export default {
   z-index: 1;
 }
 
-/* Rectángulo inferior */
+
 .bottom-rectangle {
   width: 100%;
   height: 50px;
