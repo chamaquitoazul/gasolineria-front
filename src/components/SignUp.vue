@@ -55,7 +55,7 @@ export default {
           email: 'chofer@ejemplo.com',
           password: '123456',
           role: 'chofer',
-          redirectRoute: 'dashboard-chofer' // Asegúrate que coincida con el nombre de la ruta
+          redirectRoute: 'DashboardChofer' // Asegúrate que coincida con el nombre de la ruta
         }
       ]
     };

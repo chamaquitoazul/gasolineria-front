@@ -32,14 +32,14 @@
       <main class="content">
         <div class="content-box">
           <!-- Tabla de Pending Tickets -->
-          <h2>Pending Tickets</h2>
+          <h2>Tickets Pendientes</h2>
           <table class="ticket-table">
             <thead>
               <tr>
                 <th>Ticket ID</th>
                 <th>Destination</th>
                 <th>Status</th>
-                <th>Actions</th>
+                <th>Estimated Completion Date</th> <!-- Nueva columna -->
               </tr>
             </thead>
             <tbody>
@@ -47,16 +47,13 @@
                 <td>{{ ticket.id }}</td>
                 <td>{{ ticket.destination }}</td>
                 <td :class="{'in-progress': ticket.status === 'In Progress', 'pending': ticket.status === 'Pending'}">{{ ticket.status }}</td>
-                <td>
-                  <i class="icon-eye">👁️</i>
-                  <i class="icon-check">✔️</i>
-                </td>
+                <td>{{ ticket.estimatedCompletionDate }}</td> <!-- Fecha estimada -->
               </tr>
             </tbody>
           </table>
 
           <!-- Tabla de Completed Tickets -->
-          <h2>Completed Tickets</h2>
+          <h2>Tickets Completados</h2>
           <table class="ticket-table">
             <thead>
               <tr>
@@ -79,7 +76,6 @@
   </div>
 </template>
 
-
 <script>
 
 import dashboardIcon from '../assets/dashboard-svgrepo-com.svg';
@@ -92,19 +88,31 @@ export default {
     return {
       dashboardIcon, 
       logoutIcon, 
-      userIcon 
+      userIcon,
+      pendingTickets: [
+        { id: 'T001', destination: 'New York City', status: 'In Progress', estimatedCompletionDate: '2023-10-25' },
+        { id: 'T002', destination: 'Los Angeles', status: 'Pending', estimatedCompletionDate: '2023-10-26' },
+        { id: 'T003', destination: 'Chicago', status: 'In Progress', estimatedCompletionDate: '2023-10-27' },
+        { id: 'T004', destination: 'Houston', status: 'Pending', estimatedCompletionDate: '2023-10-28' },
+        { id: 'T005', destination: 'Dallas', status: 'In Progress', estimatedCompletionDate: '2023-10-29' }
+      ],
+      completedTickets: [
+        { id: 'T006', destination: 'Phoenix', completionDate: '2023-10-17' },
+        { id: 'T007', destination: 'Miami', completionDate: '2023-10-18' },
+        { id: 'T008', destination: 'San Francisco', completionDate: '2023-10-19' }
+      ]
     };
   },
   methods: {
     logout() {
       this.$router.push({ name: 'SignUp' }); 
     },
-   
+    goToUserProfile() {
+      this.$router.push('/perfil-usuario');
+    }
   }
 }
-
 </script>
-
 
 <style scoped>
 html, body {
@@ -159,49 +167,48 @@ html, body {
     padding-top: 20px;
     color: #000000;
 }
-</style>
 
-<style scoped>
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.header-title {
+  position: absolute;
+  top: 5%;
+  left: 15%;
+}
+
+.header-user {
+  position: absolute;
+  top: 7%;
+  left: 91%;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.user-icon {
+  width: 50px; 
+  height: 30px;
+}
+
+.content-box {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.ticket-table th, .ticket-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-
-.logo {
-    width: 200px;
-    margin-bottom: 20px;
-  }
-
-
-  .header-title {
-position: absolute;
-top: 5%;
-left: 15%;
-
-}
-.header-user {
-position: absolute;
-top: 7%;
-left: 91%;
-font-size: 20px;
-cursor: pointer;
-font-weight: bold;
+.ticket-table th {
+  background-color: #f1f1f1;
 }
 
-.user-icon{
-
-  width: 50px; /* Ajusta el tamaño del ícono según tus preferencias */
-  height: 30px;
-
-}
 
 </style>
